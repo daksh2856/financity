@@ -1,0 +1,167 @@
+{% extends 'base.html'%}
+{% load static %}
+<!-- <html>
+<head>
+    <title>blogpage</title>
+    <link href="{%static 'css/bootstrap.min.css'%}" rel="stylesheet">
+    <link href="{%static 'css/aos.css'%}" rel="stylesheet">
+    <link href="{%static 'css/icofont.min.css'%}" rel="stylesheet">
+    <link href="{%static 'css/all.min.css'%}" rel="stylesheet">
+    <link href="{%static 'css/aos.css'%}" rel="stylesheet">-->
+    {% block content%}
+    <style> 
+        
+        *{font-family:inherit;}
+        .inner{overflow: hidden}
+        .inner img{transition: all 2s ease}
+        .inner:hover img{transform: scale(1.25);background: rgba(178, 60, 253, 0.2)}
+        .plus{
+            width: 80px;
+            height: 80px;
+            background-color: #01b1d7;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            border-radius: 50%;
+            color:white;
+            font-size: 40px;
+            box-shadow: 2px 2px 5px rgba(0,0,0,0.25);
+            position: fixed;
+            right:70px;
+            bottom:40px;
+            transition: 0.25s;
+        }
+        .plus:active{background-color: teal;}
+    </style>
+<!-- </head>
+<body> -->
+        <a href="{%url 'b1'%}"><i class="icofont-plus plus"></i></a>
+        <div class="container-fluid bg-light ">
+            <div class="container ">
+            <div class="row">
+                <div class="col-md-8 mt-5">
+                    <div class="inner">
+                    <a style="text-decoration: none" href="#"><img src="{%static 'images/about/blog.jpeg'%}" width="900" height="500"/></a>
+                    </div>
+                    <div class="container bg-white">
+                        <h1 class=""><label class="mt-5 mb-3">This Is An Awesome Sticky Post</label></h1>
+                        <p>
+                            <i class="icofont-clock-time"><a href="#" style="text-decoration:none;color:black">&nbsp;&nbsp;JUNE 6, 2016</a></i>
+                            <i class="icofont-copy ms-3"><a href="#" style="text-decoration:none;color:black">&nbsp;&nbsp;JOHN SMITH</a></i>
+                            <i class="icofont-blogger ms-3"><a href="#" style="text-decoration:none;color:black">&nbsp;&nbsp;BLOG</a></i>
+                            <i class="icofont-comment ms-3"><a href="#" style="text-decoration:none;color:black">&nbsp;&nbsp;3</a></i>
+                        </p>
+                        <br/>
+                        <p style="font-size: 20px">A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my whole heart. I am alone, and feel the charm of existence in this spot, which was created for the bliss of souls like mine. I am so happy, my dear friend, so absorbed in the exquisite sense of mere tranquil existence, that I neglect...</p>
+                        <br/>
+                        <input type="submit" value="Read More" class="p-2 bg-primary mb-4" style="color: antiquewhite">
+                    </div>
+                </div>
+                <div class="col-md-4 mt-5"><b>Text Widget</b>
+                <p class="mt-4 mb-5">Nulla vitae elit libero, a pharetra augue. Nulla vitae elit libero, a pharetra augue. Nulla vitae elit libero, a pharetra augue. Donec sed odio dui. Etiam porta sem malesuada.
+                </p>
+                <b>Recent News</b>
+                <div class="row mt-4">
+                    <div class="col-md-4">
+                        <img src="{%static 'images/about/sblog.jpeg'%}" width="100px" height="100px" class="">
+                    </div>
+                    <div class="col-md-8 mt-3">
+                        <i class="icofont-clock-time"><a href="#" style="text-decoration:none;color:black">&nbsp;&nbsp;JUNE 6, 2016</a></i><br/>
+                        <br/>
+                        <i class="icofont-copy"><a href="#" style="text-decoration:none;color:black">&nbsp;&nbsp;JOHN SMITH</a></i>
+                    </div>
+                </div>
+                <div class="row mt-4">
+                    <div class="col-md-4">
+                        <img src="{%static 'images/about/sblog2.jpeg'%}" width="100px" height="100px" class="">
+                    </div>
+                    <div class="col-md-8 mt-3">
+                        <i class="icofont-clock-time"><a href="#" style="text-decoration:none;color:black">&nbsp;&nbsp;JUNE 6, 2016</a></i><br/>
+                        <br/>
+                        <i class="icofont-copy"><a href="#" style="text-decoration:none;color:black">&nbsp;&nbsp;JOHN SMITH</a></i>
+                    </div>
+                </div>
+                <div class="row mt-4">
+                    <div class="col-md-4">
+                        <img src="{%static 'images/about/sblog3.jpeg'%}" width="100px" height="100px" class="">
+                    </div>
+                    <div class="col-md-8 mt-3">
+                        <i class="icofont-clock-time"><a href="#" style="text-decoration:none;color:black">&nbsp;&nbsp;JUNE 6, 2016</a></i><br/>
+                        <br/>
+                        <i class="icofont-copy"><a href="#" style="text-decoration:none;color:black">&nbsp;&nbsp;JOHN SMITH</a></i>
+                    </div>
+                </div>
+                
+            </div>
+            </div>
+                <div class="row">
+                <div class="col-md-8 mt-5">
+                    <div class="inner">
+                    <a style="text-decoration: none" href="#"><img src="{%static 'images/about/blog2.jpeg'%}" width="900" height="500"/></a>
+                    </div>
+                    <div class="container bg-white">
+                        <h1 class=""><label class="mt-5 mb-3">I sink under the weight</label></h1>
+                        <p>
+                            <i class="icofont-clock-time"><a href="#" style="text-decoration:none;color:black">&nbsp;&nbsp;JUNE 6, 2016</a></i>
+                            <i class="icofont-copy ms-3"><a href="#" style="text-decoration:none;color:black">&nbsp;&nbsp;JOHN SMITH</a></i>
+                            <i class="icofont-blogger ms-3"><a href="#" style="text-decoration:none;color:black">&nbsp;&nbsp;BLOG</a></i>
+                            <i class="icofont-comment ms-3"><a href="#" style="text-decoration:none;color:black">&nbsp;&nbsp;3</a></i>
+                        </p>
+                        <br/>
+                        <p style="font-size: 20px">A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my whole heart. I am alone, and feel the charm of existence in this spot, which was created for the bliss of souls like mine. I am so happy, my dear friend, so absorbed in the exquisite sense of mere tranquil existence, that I neglect...</p>
+                        <br/>
+                        <input type="submit" value="Read More" class="p-2 bg-primary mb-4" style="color: antiquewhite">
+                    </div>
+                </div>
+                </div>
+                <div class="row">
+                <div class="col-md-8 mt-5">
+                    <div class="inner">
+                    <a style="text-decoration: none" href="#"><img src="{%static 'images/about/blog3.jpeg'%}" width="900" height="500"/></a>
+                    </div>
+                    <div class="container bg-white">
+                        <h1 class=""><label class="mt-5 mb-3">Possession of my entire soul</label></h1>
+                        <p>
+                            <i class="icofont-clock-time"><a href="#" style="text-decoration:none;color:black">&nbsp;&nbsp;JUNE 6, 2016</a></i>
+                            <i class="icofont-copy ms-3"><a href="#" style="text-decoration:none;color:black">&nbsp;&nbsp;JOHN SMITH</a></i>
+                            <i class="icofont-blogger ms-3"><a href="#" style="text-decoration:none;color:black">&nbsp;&nbsp;BLOG</a></i>
+                            <i class="icofont-comment ms-3"><a href="#" style="text-decoration:none;color:black">&nbsp;&nbsp;3</a></i>
+                        </p>
+                        <br/>
+                        <p style="font-size: 20px">A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my whole heart. I am alone, and feel the charm of existence in this spot, which was created for the bliss of souls like mine. I am so happy, my dear friend, so absorbed in the exquisite sense of mere tranquil existence, that I neglect...</p>
+                        <br/>
+                        <input type="submit" value="Read More" class="p-2 bg-primary mb-4" style="color: antiquewhite">
+                    </div>
+                </div>
+                </div>
+                <div class="row">
+                <div class="col-md-8 mt-5 mb-5">
+                    <div class="inner">
+                    <a style="text-decoration: none" href="#"><img src="{%static 'images/about/blog4.jpg'%}" width="900" height="500"/></a>
+                    </div><div class="container bg-white">
+                        <h1 class=""><label class="mt-5 mb-3">Pityful a rethoric question ran</label></h1>
+                        <p>
+                            <i class="icofont-clock-time"><a href="#" style="text-decoration:none;color:black">&nbsp;&nbsp;JUNE 6, 2016</a></i>
+                            <i class="icofont-copy ms-3"><a href="#" style="text-decoration:none;color:black">&nbsp;&nbsp;JOHN SMITH</a></i>
+                            <i class="icofont-blogger ms-3"><a href="#" style="text-decoration:none;color:black">&nbsp;&nbsp;BLOG</a></i>
+                            <i class="icofont-comment ms-3"><a href="#" style="text-decoration:none;color:black">&nbsp;&nbsp;3</a></i>
+                        </p>
+                        <br/>
+                        <p style="font-size: 20px">A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my whole heart. I am alone, and feel the charm of existence in this spot, which was created for the bliss of souls like mine. I am so happy, my dear friend, so absorbed in the exquisite sense of mere tranquil existence, that I neglect...</p>
+                        <br/>
+                        <input type="submit" value="Read More" class="p-2 bg-primary mb-4" style="color: antiquewhite">
+                    </div>
+                </div>
+                </div>
+                
+            </div>
+        
+        </div>
+        {% endblock%}
+        <!-- <script src="{%static 'js/bootstrap.bundle.min.js'%}"></script>
+        <script src="{%static 'js/bootstrap.min.js'%}"></script>
+        <script src="{%static 'js/aos.js'%}"></script>
+    </body>
+    
+</html> -->

@@ -1,0 +1,235 @@
+{% extends 'base.html'%}
+{% load static%}
+{% block content %}
+<!-- <html>
+<head>
+    <title>abouttheministry</title>
+    
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/icofont.min.css" rel="stylesheet">
+    <link href="../css/ss.css" rel="stylesheet">
+    <link href="../css/all.min.css" rel="stylesheet">
+    <link href="../css/min.css" rel="stylesheet">-->
+    <style>
+        .c .card{
+            position: relative;
+            width: 300px;
+            height: 400px;
+            background: rgba(255,255,255,.05);
+            margin: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            border-radius: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            
+           
+        }
+        .c .card .content
+        {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column ;
+            opacity: 1;
+            transition: 0.5s;
+        }
+        .c .card:hover .content
+        {
+            opacity: 1;
+            transform: translateY(-20px); 
+        }
+        .c .card .content .imgbx{
+            position: relative;
+            width: 175px;
+            height: 175px;
+            border-radius: 50%;
+            overflow: hidden;
+            border:10px solid rgba(0,0,0,0.25);
+        }
+        .c .card .content .imgbx img{
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+            
+            
+        }
+        
+        .c .card .content .contentbox h3{
+            color: white;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 500;
+            font-size: 18px;
+            text-align: center;
+            margin: 20px 0 10px;
+            line-height: 1.1em;
+        }
+        .c .card .content .contentbox h3 span{
+            font-size: 12px;
+            font-weight: 300;
+            text-transform: capitalize;
+        }
+        .c .card .sci
+        {
+            position: absolute;
+            bottom: 50px;
+            display: flex;
+        }
+        .c .card .sci li
+        {
+            list-style: none;
+            margin: 0 10px;
+            transform: translateY(40px);
+            transition: 0.5s;
+            transition-delay: calc(0.1s * var(--i));
+            opacity: 0;
+        }
+        .c .card:hover .sci li{
+            transform: translateY(0px);
+            opacity: 1;
+        }
+        .c .card .sci li a
+        {
+            color: white;
+            font-size:24px;
+        }
+        p,h6{color: white;}
+
+        
+    </style>
+    
+<!--</head>
+<body>
+    <div>
+        <img src="../images/about/inner-banner.jpg" width="100%" >
+    </div>
+    <div class="b">
+    <section> -->
+
+           
+<div style="background-color: black;">
+    
+    <div class="row">
+        
+        <div class="col-md-4">
+            <h4 style="color: orange;margin-top:40px;margin-left: 40px;">MINISTER OF STATE
+                <div class="progress" style="height: 5px;max-width:48%;margin-top: 5px;">
+                    <div class="progress-bar u11" role="progressbar" style="width: 17% ;" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
+                    <div class="progress-bar bg-light" role="progressbar" style="width: 7%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="0"></div>
+                    <div class="progress-bar u11" role="progressbar" style="width: 17%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="0"></div>
+                    <div class="progress-bar bg-light" role="progressbar" style="width: 7%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="0"></div>
+                    <div class="progress-bar u11" role="progressbar" style="width: 100% ;" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+                </h4>
+            <div class="container c">
+                <div class="card">
+                    <div class="content">
+                        <div class="imgbx"><img src="{%static 'images/about/anurag-thakur_2.jpg'%}"></div>
+                        <div class="contentbox">
+                            <h3>anurag thakur<br><span>minister of state</span></h3>
+                        </div>
+                    </div>
+                
+                    <ul class="sci">
+                    <li style="--i:1">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    </li>
+                    <li style="--i:2">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </li>
+                    <li style="--i:3">
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </li>
+                </ul>
+                </div>
+            </div> 
+        </div>
+        <div class="col-md-8">
+            <table class="table table-border table-striped table-hover table-primary" style="margin-top: 25%;">
+                <tr>
+                    <th>Date of Birth</th><td>24 October 1974</td>
+                </tr>
+                <tr>
+                    <th>Place of Birth</th><td>	Samirpur, District Hamirpur, Himachal Pradesh</td>
+                </tr>
+                <tr>
+                    <th>Nationality:</th><td>Indian</td>
+                </tr>
+                <tr>
+                    <th>Education Qualifications:</th><td>Bachelors from Doaba College, Jalandhar, Punjab</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-10">
+            <h5 style="color: orange;">Position Held:-</h5>
+            <div class="progress" style="height: 5px;max-width:10%;margin-top: 5px;">
+                <div class="progress-bar u11" role="progressbar" style="width: 17% ;" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
+                <div class="progress-bar bg-light" role="progressbar" style="width: 7%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="0"></div>
+                <div class="progress-bar u11" role="progressbar" style="width: 17%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="0"></div>
+                <div class="progress-bar bg-light" role="progressbar" style="width: 7%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="0"></div>
+                <div class="progress-bar u11" role="progressbar" style="width: 100% ;" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+            <table class="table table-border table-striped table-hover table-primary mt-5 mb-5">
+                <tr>
+                    <th>1</th><td>	MoS Finance and Corporate Affairs, GOI</td>
+                </tr>
+                <tr>
+                    <th>2</th><td>4th term Member of Parliament (Lok Sabha)</td>
+                </tr>
+                <tr>
+                    <th>3</th><td>Chief Whip in 16th Lok Sabha</td>
+                </tr>
+                <tr>
+                    <th>4</th><td>Lieutenant in the Territorial Army</td>
+                </tr>
+                <tr>
+                    <th>5</th><td>Fmr. Chairman, Parliamentary Standing Committee on IT (IT, Telecom, Information & Broadcasting, Postal)</td>
+                </tr>
+                <tr>
+                    <th>6</th><td>Fmr. Member, Public Accounts Committee</td>
+                </tr>
+                <tr>
+                    <th>7</th><td>Fmr. India Representative to WTO Parliamentary Steering Committee</td>
+                </tr>
+                <tr>
+                    <th>8</th><td>Recipient of Sansad Ratan Award for outstanding performance in Parliament</td>
+                </tr>
+            </table>
+            <p>
+                Mr Anurag Singh Thakur is a Minister of State Finance and Corporate Affairs. He is a four time elected Member of the Indian Parliament (Lok Sabha/Lower House) from Hamirpur, Himachal Pradesh. Within Parliament he has served as Chairman of the Parliamentary Standing Committee on IT and Member of Public Accounts Committee. During the 16th Lok Sabha, he was appointed as the Chief Whip, Lok Sabha, becoming the youngest to assume the post.
+                <br><br>In the year 2016, he was commissioned as a regular officer in the Territorial Army as a Lieutenant of the 124 Sikh Regiment, thereby becoming the first serving BJP Member of Parliament to join as a regular officer.
+
+               <br><br> He is the former National President of Bharatiya Janata Yuva Morcha (BJYM-Youth Wing of the Bharatiya Janata Party) and has been the only National President to be appointed for three consecutive terms in the BJP. He is also the first BJYM National President to have worked under three different BJP Presidents - Mr Amit Shah, Mr Rajnath Singh and Mr Nitin Gadkari.
+                
+                <br><br>Under Mr Anurag Singh Thakur’s leadership, the BJYM led various socioeconomic and political initiatives, such as Rashtriya Ekta Yatra: Kolkata to Kashmir, Shaheed Shradhanjali Yatra – A journey from Guwahati to Tawang to pay homage to 1962 war bravehearts, Sansad Ghirav a national agitation against corruption, National Youth Convention, Digital Literacy campaign, etc.
+                
+               <br><br> Mr Thakur is an avid sports lover and has contributed immensely to sports in the capacity of a sports administrator. He has served as the President at the Board of Control for Cricket in India (BCCI), President Himachal Pradesh Cricket Association (HPCA) and continues to serve as President Himachal Pradesh Olympic Association, President Hockey Himachal, President Himachal Pradesh Table Tennis Association and Associate Vice President Hockey India. He is credited for building the world famous Dharamshala Cricket Stadium which is considered as one of the most beautiful stadium in the world.
+                
+               <br><br> He has been appointed by Global Fund as the Global Champion in the category of Public Health for creating awareness about Malaria, TB & HIV AIDS. He is a recipient of the Best Young Parliamentarian Award in 2011 and recognized as a “Young Global Leader” by the World Economic Forum. In a nationwide survey in the run-up to the 2014 General elections he was rated amongst India’s Top 10 MPs based on his Parliamentary performance and commitments to society at large.
+                
+               <br><br> He also served as the President of the EU-India Parliamentary Friendship Group, President of the FICCI Indo-US Parliamentarians Forum and India- Germany Parliamentarians Forum. He is the founder of 'Honour Our Women' (HOW) Foundation. He is an acclaimed public speaker at various forums on public health, Information Technology, National Security, Governance, Sports Administration and issues concerning young people.
+                
+               <br><br> Recently, he was awarded the Sansad Ratan Award in category of Jury Committee Special for his outstanding performance as a Parliamentarian, becoming the only Member of Parliament from BJP & North India to be coveted with this honor.
+            </p>
+            <p>
+                <h6>Minister of the Department:</h6>
+               <p class="mb-5">Minister of state</p>
+            </p>
+
+        </div>
+        <div class="col-md-1"></div>
+    </div>
+        
+    {% endblock %}
+    <!-- </section>
+    </div>
+</body>
+</html> -->

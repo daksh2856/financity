@@ -1,0 +1,252 @@
+{% extends 'base.html'%}
+{% load static%}
+{% block content %}
+<!-- <html>
+<head>
+    <title>abouttheministry</title>
+    
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/icofont.min.css" rel="stylesheet">
+    <link href="../css/ss.css" rel="stylesheet">
+    <link href="../css/all.min.css" rel="stylesheet">
+    <link href="../css/min.css" rel="stylesheet">-->
+    <style>
+        .c .card{
+            position: relative;
+            width: 300px;
+            height: 400px;
+            background: rgba(255,255,255,.05);
+            margin: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            border-radius: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            
+           
+        }
+        .c .card .content
+        {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column ;
+            opacity: 1;
+            transition: 0.5s;
+        }
+        .c .card:hover .content
+        {
+            opacity: 1;
+            transform: translateY(-20px); 
+        }
+        .c .card .content .imgbx{
+            position: relative;
+            width: 175px;
+            height: 175px;
+            border-radius: 50%;
+            overflow: hidden;
+            border:10px solid rgba(0,0,0,0.25);
+        }
+        .c .card .content .imgbx img{
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+            
+            
+        }
+        
+        .c .card .content .contentbox h3{
+            color: white;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 500;
+            font-size: 18px;
+            text-align: center;
+            margin: 20px 0 10px;
+            line-height: 1.1em;
+        }
+        .c .card .content .contentbox h3 span{
+            font-size: 12px;
+            font-weight: 300;
+            text-transform: capitalize;
+        }
+        .c .card .sci
+        {
+            position: absolute;
+            bottom: 50px;
+            display: flex;
+        }
+        .c .card .sci li
+        {
+            list-style: none;
+            margin: 0 10px;
+            transform: translateY(40px);
+            transition: 0.5s;
+            transition-delay: calc(0.1s * var(--i));
+            opacity: 0;
+        }
+        .c .card:hover .sci li{
+            transform: translateY(0px);
+            opacity: 1;
+        }
+        .c .card .sci li a
+        {
+            color: white;
+            font-size:24px;
+        }
+        p,h6{color: white;}
+
+        
+    </style>
+    
+<!--</head>
+<body>
+    <div>
+        <img src="../images/about/inner-banner.jpg" width="100%" >
+    </div>
+    <div class="b">
+    <section> -->
+
+           
+<div style="background-color: black;">
+    
+    <div class="row">
+        
+        <div class="col-md-4">
+            <h4 style="color: orange;margin-top:40px;margin-left: 40px;">MEET THE UNION FINANCE MINISTER
+                <div class="progress" style="height: 5px;max-width:94%;margin-top: 5px;">
+                    <div class="progress-bar u11" role="progressbar" style="width: 17% ;" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
+                    <div class="progress-bar bg-light" role="progressbar" style="width: 7%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="0"></div>
+                    <div class="progress-bar u11" role="progressbar" style="width: 17%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="0"></div>
+                    <div class="progress-bar bg-light" role="progressbar" style="width: 7%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="0"></div>
+                    <div class="progress-bar u11" role="progressbar" style="width: 100% ;" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+                </h4>
+            <div class="container c">
+                <div class="card">
+                    <div class="content">
+                        <div class="imgbx"><img src="{%static 'images/about/nirmala-sitharaman.jpg'%}"></div>
+                        <div class="contentbox">
+                            <h3>nirmala sitaraman<br><span>finance minister</span></h3>
+                        </div>
+                    </div>
+                    <ul class="sci">
+                        <li style="--i:1">
+                            <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        </li>
+                        <li style="--i:2">
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                        </li>
+                        <li style="--i:3">
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                        </li>
+                    </ul>
+                </div>
+            </div> 
+        </div>
+        <div class="col-md-8">
+            <table class="table table-border table-striped table-hover table-primary mt-5">
+                <tr>
+                    <th>Party</th><td>Bharatiya Janata Party</td>
+                </tr>
+                <tr>
+                    <th>Father's Name</th><td>Shri Narayanan Sitharaman</td>
+                </tr>
+                <tr>
+                    <th>Mother's Name</th><td>Shrimati Savitri</td>
+                </tr>
+                <tr>
+                    <th>Date of Birth</th><td>18 August 1959</td>
+                </tr>
+                <tr>
+                    <th>Place of Birth</th><td>Madurai (Tamil Nadu)</td>
+                </tr>
+                <tr>
+                    <th>Marital Status</th><td>Married</td>
+                </tr>
+                <tr>
+                    <th>Date of Marriage</th><td>12 September 1986</td>
+                </tr>
+                <tr>
+                    <th>Spouse's Name</th><td>Dr. Parakala Prabhakar</td>
+                </tr>
+                <tr>
+                    <th>Profession</th><td>Economist and Political and Social Worker</td>
+                </tr>
+                <tr>
+                    <th>Educational Qualifications</th><td>M.A. (Economics), M.Phil, Educated at Seethalakshmi Ramaswamy College, Tiruchirapalli, Tamil Nadu and Jawaharlal Nehru University, New Delhi</td>
+                </tr>
+                <tr>
+                    <th>Email</th><td><a href="mailto:appointment[dot]fm[at]gov[dot]in" target="_blank">appointment[dot]fm[at]gov[dot]in</a></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-10">
+            <h5 style="color: orange;">Position Held:-</h5>
+            <div class="progress" style="height: 5px;max-width:10%;margin-top: 5px;">
+                <div class="progress-bar u11" role="progressbar" style="width: 17% ;" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
+                <div class="progress-bar bg-light" role="progressbar" style="width: 7%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="0"></div>
+                <div class="progress-bar u11" role="progressbar" style="width: 17%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="0"></div>
+                <div class="progress-bar bg-light" role="progressbar" style="width: 7%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="0"></div>
+                <div class="progress-bar u11" role="progressbar" style="width: 100% ;" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+            <table class="table table-border table-striped table-hover table-primary mt-5 mb-5">
+                <tr>
+                    <th>2003-2005</th><td>Member, National Commission for Women</td>
+                </tr>
+                <tr>
+                    <th>26 May 2014 - 9 Nov. 2014</th><td>Minister of State in the Ministry of Finance; and Minister of State in the Ministry of Corporate Affairs</td>
+                </tr>
+                <tr>
+                    <th>26 May 2014 - 3 Sept. 2017</th><td>Minister of State (Independent Charge) of the Ministry of Commerce and Industry</td>
+                </tr>
+                <tr>
+                    <th>June 2014</th><td>Elected to Rajya Sabha (resigned w.e.f. 17 June 2016)</td>
+                </tr>
+                <tr>
+                    <th>June 2016</th><td>Elected to Rajya Sabha</td>
+                </tr>
+                <tr>
+                    <th>3 Sept. 2017 - 30 May 2019</th><td>	Minister of Defence</td>
+                </tr>
+                <tr>
+                    <th>31 May 2019 onwards</th><td>Minister of Finance and Minister of Corporate Affairs</td>
+                </tr>
+            </table>
+            <p>
+                Social and Cultural Activities, Literary, Artistic and Scientific Accomplishments and other Special Interests
+                -
+            </p>
+            <p>
+                Sports, Clubs, Favourite Pastimes and Recreation
+                Travel, trekking, music and cooking
+            </p>
+            <p>
+                Countries Visited<br>
+                Indonesia, to attend bilateral meeting with the Defence Minister of Indonesia, 21-24 Oct. 2018; Singapore, to attend 5th ADMM Plus meeting, 18-21 Oct. 2018; France, as leader of a delegation for bilateral meeting, 11-12 Oct. 2018; Kazakhstan, to attend bilateral meeting with the Defence Minister of Kazakhstan, 2-4 Oct. 2018; Egypt, to attend bilateral meeting with the Defence Minister of Egypt; Thailand, to enhance the bilateral relations with the defence establishment of the Kingdom of Thailand, 26-29 Aug. 2018; Vietnam, to attend bilateral meeting with the Defence Minister of Vietnam, 12-15 June 2018; Cambodia, to attend bilateral meeting with the Defence Minister of Cambodia, 10-12 June 2018; China, to attend the Shanghai Cooperation Organisation (SCO) Meeting, 23-25 April 2018; Russia, as leader of a delegation for bilateral meeting, 3-5 April 2018; Philippines, to attend 4th ASEAN Defence Ministers' Meeting-Plus (ADMM-Plus), 23-25 Oct. 2017; Italy, to attend Joint Commission meeting in May 2017; Bilateral visit to Japan in April 2017; Bilateral visit to Cyprus in February 2017; Davos (Switzerland), to represent India at the World Economic Forum in January 2017; Philippines, to participate in the 2nd Intersessional Regional Comprehensive Economic Partnership (RCEP) Ministerial Meeting in November 2016; Bhutan for signing of the agreement on Trade, Commerce and Transit between India and Bhutan in November 2016; Norway, to attend the WTO Trade Ministers Meeting in October 2016; Sri Lanka to attend bilateral meeting in September 2016; Canada, to attend the Annual ministerial dialogue in September 2016; Russia to attend the INNOPROM -2016 in July 2016; Myanmar for the India -Myanmar Business conclave in May 2016; Paris (France) to attend the Informal Gathering of the WTO Ministers in June 2016; Brussels (Belgium) and London (U.K..) to participate in India - EU Summit and bilateral meeting with EU in March - April 2016; Nairobi (Kenya) to attend the WTO Ministerial Conference 2015 in December 2015; San Francisco (U.S.A) to attend Fortune Global Forum - 2015 in November 2015; Minsk (Belarus) to participate in the seventh Session of India-Belarus Inter-Governmental Commission for Economic, Trade, Industrial, Scientific & Cultural Cooperation and bilateral meeting in September 2015; New York and San Jose (U.S.A.), to participate in the meetings as part of delegation led by the Prime Minister of India in September 2015; Kuala Lumpur (Malaysia), to participate in the Regional Comprehensive Economic Partnership (RCEP) Inter-sessional Ministerial and Bilateral Meeting in July and August 2015; Algeria, to attend the India - Algeria Joint Commission Meeting in May 2015; Australia to attend the Trade Ministers Meeting of G-20 held in Sydney in July 2014; Cairns (Australia), to attend the Finance Ministers and Central Bank Governors Meeting of G-20 in September 2014; Brazil, as a Member of the Prime Minister's Delegation to the 6th BRICS Summit held in Fortaleza in July 2014; China, as a Member of the Vice-President of India's Delegation in June 2014; Taiwan and U.S.A., as a Member of the Party Delegation in March 2009 and July 2012 respectively; U.K., as a Member of the International Jury in March 2007
+            </p>
+            <p>
+                Other Information<br>
+                Member, National Executive, B.J.P., since 2008; National Spokesperson, B.J.P., 2010-2014
+            </p>
+            <p>
+                <h6>Minister of the Department:</h6>
+               <p class="mb-5"> Meet the Union Finance Minister</p>
+            </p>
+
+        </div>
+        <div class="col-md-1"></div>
+    </div>
+        
+    {% endblock %}
+    <!-- </section>
+    </div>
+</body>
+</html> -->

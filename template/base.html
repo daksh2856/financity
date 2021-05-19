@@ -1,0 +1,269 @@
+{% load static %}
+<html>
+<head>
+    <title>Header page</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+
+    <link href="{%static 'css/bootstrap.min.css'%}" rel="stylesheet">
+    <link href="{%static 'css/icofont.min.css'%}" rel="stylesheet">
+    <link href="{%static 'css/all.min.css'%}" rel="stylesheet">
+    <link href="{% static 'css/ss.css'%}" rel="stylesheet">
+    
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Barriecito&family=Berkshire+Swash&family=Bungee+Inline&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.theme.min.css">
+    <link href="{%static 'css/aos.css'%}" rel="stylesheet">
+    
+    
+    <style>
+        .uu{text-decoration: none;font-size: 20px;color: white}
+        .uu:hover{color: orange;}
+        .u11{color: #01b1d7}
+        .navbar{font-family:'Times New Roman', Times, serif}
+        ul :hover{color:orange!important}
+        .temp{overflow: hidden;}
+        .g{
+        display:none ;
+        }
+        .img2{transform: scale(1.7);background-position: center}
+
+        .bg{background-color: #01b1d7; color:white}
+        .navbar-nav .nav-item .nav-link{color: white}
+        .navbar-nav .nav-item .nav-link:hover{color: white}
+        .sticky{position:fixed;top: 0;max-width: 100%;background-color:black;width: 100%;left:0;z-index: 999;}
+        .sticky .navbar-nav
+        {
+            margin-left:auto;
+        }
+        
+        .sticky .g
+        {
+            display: block;
+        }
+         p{text-align: justify}
+        .u1{background-color: orange}
+        .u{color: orange}
+    </style>
+</head>
+<body >
+<div class="container-fluid">
+    <div class="row">
+            <div class="col-md-1">
+            <img src="{%static 'images/logo8.png'%}" height="" width="100px" style="margin-left:185px">
+            </div>
+            <div class="col-md-3"></div>
+            <div class="col-md-5 mt-5">
+                <p>
+                <i class="icofont-phone  border rounded rounded-circle p-2 " style="color:#01b1d7;"></i><span class="ms-3"> 0123456789</span>
+                <i class="icofont-email  border rounded rounded-circle p-2 ms-2" style="color:#01b1d7;"></i> jklmno@gmail.com
+                </p>
+            </div>
+            <div class="col-md-3  mt-5">
+                <p>Follow us on:
+                <i class="icofont-facebook bg-primary text-light border rounded rounded-circle p-2 "></i> 
+                <i class="icofont-instagram bg-danger text-light rounded rounded-circle p-2 ms-2"></i>
+                <i class="icofont-twitter bg-info text-light border border-black rounded rounded-circle p-2 ms-2"></i>
+                </p>
+            </div>
+        </div>
+</div>
+<div class="container-fluid p-0 ">
+    <div class="container bb">
+    <div id="header" class="bg">
+        <nav class="navbar navbar-expand-lg  ms-auto">
+            <div class="container-fluid">
+                <img src="{%static 'images/logo9-removebg-preview.jpg'%}" height="50px" width="" class="g" style="margin-left: 100px">
+                <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                    <ul class="navbar-nav ms-aoto">
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="{%url 'he'%}"><i class="fas fa-2x fa-home"></i></a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">ABOUT US</a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <li><a class="dropdown-item" href="{%url 'm'%}">ABOUT THE MANISTRY</a></li>
+                                <li><a class="dropdown-item" href="#">DEPARTMENTS</a></li>
+                                <li><a class="dropdown-item" href="#">WHO'S WHO</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{%url 'es'%}">E-SERVICES</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">ACTS & RULES</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{%url 'b2'%}">BLOG</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{%url 'cu'%}">CONTACT US</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">DATA & STATISTICS</a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <li><a class="dropdown-item" href="#">ANALYSIS</a></li>
+                                <li><a class="dropdown-item" href="#">PREDICTION</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+    </div>    
+</div>
+<div>
+    <img src="{%static 'images/about/inner-banner.jpg'%}" width="100%" >
+</div>
+{% block content %}
+
+{% endblock %}
+<div class="progress" style="height: 5px;width:100%">
+    <div class="progress-bar u11" role="progressbar" style="width: 17% ;" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
+    <div class="progress-bar bg-light" role="progressbar" style="width: 7%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="0"></div>
+    <div class="progress-bar u11" role="progressbar" style="width: 17%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="0"></div>
+    <div class="progress-bar bg-light" role="progressbar" style="width: 7%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="0"></div>
+    <div class="progress-bar u11" role="progressbar" style="width: 100% ;" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
+</div>
+<div class="container-fluid">
+<div class="row text-white" style="background-color: black;">
+<div class="col-md-1 "></div>
+<div class="col-md-3 ">
+    <div class="container-fluid p-4">
+        <div class="container">
+            <div class="card " style="background: none;border: none">
+                <div class="card-body  text-white  shadow" style="border-radius:20px ;background-color: gray" >
+                    <div class="mt-3"><img src="{%static 'images/logofooter.jpg'%}" style="width:100%;"></div>
+                    <div class="mt-5" style="text-align: justify">This is my website with some description about the financial information about the countries and provide some information related future view.
+                    </div>
+                    <div class="mt-2">
+                        <h3 class="mb-3">Follow us</h3>
+                        <p><i class="bg-primary p-2 rounded-circle icofont-facebook p-2"></i><i class=" bg-info p-2 rounded-circle ms-2 icofont-twitter"></i><i  class="text-danger  bg-light p-2 ms-2 rounded-circle icofont-youtube-play"></i><i class=" bg-warning p-2 rounded-circle ms-2 icofont-google-plus"></i><i class=" bg-danger p-2 rounded-circle ms-2 icofont-instagram"></i></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col-md-4">
+    <div class="row">
+         <div class="col-md-2"></div>
+         <div class="col-md-8">
+             <div class="row mt-5">
+                 <div class="col-md-2">
+                     <i class="far fa-2x fa-map mt-3"></i>
+                 </div>
+                 <div class="col-md-10">
+                     <p><label class="ms-2">Jaipur India</label></p>
+                     <p><label class="ms-2">5454 Road Avenue</label></p>
+                 </div>
+             </div>
+             <h3 class="mt-5 " >Useful links</h3>
+             <div class="progress" style="height: 5px;width:150px">
+                 <div class="progress-bar u1" role="progressbar" style="width: 17% ;" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
+                 <div class="progress-bar bg-light" role="progressbar" style="width: 7%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="0"></div>
+                 <div class="progress-bar u1" role="progressbar" style="width: 17%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="0"></div>
+                 <div class="progress-bar bg-light" role="progressbar" style="width: 7%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="0"></div>
+                 <div class="progress-bar u1" role="progressbar" style="width: 100% ;" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
+             </div>
+            
+             <div class="row mt-3">
+                 <div class="col-md-6">
+                     <p class="mb-3 "><a href="" class="uu"><i class="fas fa-address-card"></i> About us</a></p>
+                     <p class="mb-3 "><a href="" class="uu"><i class="fas fa-hourglass"></i> Our terms</a></p>
+                     <p class="mb-3 "><a href="" class="uu"><i class="fas fa-hourglass"></i> Our terms</a></p>
+                 </div>
+                 <div class="col-md-6">
+                     <p class="mb-3 "><a href="" class="uu"><i class="fas fa-hands-helping"></i> help</a></p>
+                     <p class="mb-3 "><a href="" class="uu"><i class="fab fa-servicestack"></i> Services</a></p>
+                     <p class="mb-3 "><a href="" class="uu"><i class="fas fa-address-book"></i> Contact</a></p>
+                 </div>
+             </div>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+</div>
+<div class="col-md-4">
+    <div class="row">
+         <div class="col-md-2"></div>
+         <div class="col-md-8">
+             <div class="row mt-5">
+                 <div class="col-md-2">
+                     <i class="fas fa-2x fa-phone-volume mt-3"></i>
+                 </div>
+                 <div class="col-md-10" >
+                     <p><label class="ms-2">0123456789</label></p>
+                     <p><label class="ms-2">Give us a call</label></p>
+                 </div>
+             </div>
+             <h3 class="mt-5 ">Subscribe</h3>
+             <div class="progress" style="height: 5px;width:130px">
+                 <div class="progress-bar u1" role="progressbar" style="width: 17% ;" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
+                 <div class="progress-bar bg-light" role="progressbar" style="width: 7%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="0"></div>
+                 <div class="progress-bar u1" role="progressbar" style="width: 17%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="0"></div>
+                 <div class="progress-bar bg-light" role="progressbar" style="width: 7%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="0"></div>
+                 <div class="progress-bar u1" role="progressbar" style="width: 100% ;" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
+             </div>
+             <div class="row mt-3">
+                <div class="col-md-12">
+                    <p>
+                    <label>Reference site about finance,giving information on its value,as well.</label>
+                    </p>
+                    <form>
+                    <div class="input-group">
+                    <input type="EMAIL" style="border-top-left-radius: 24px;border-bottom-left-radius: 24px; border:none" class="mt-2 form-control"  placeholder="Email Address">
+                        <span class="input-group-text mt-2" id="t" style="border-bottom-right-radius: 24px;border-top-right-radius: 24px;background-color: black"><button for="t" style="border: none;color:white;background-color: black"><i class="fas fa-location-arrow"></i></button></span>
+                    </div>
+                    </form>
+                </div>
+             </div>
+    </div>
+</div>
+
+</div>
+</div>
+</div>
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.js"></script>
+<script>
+    $(document).ready(function(){
+        $("#testimonial-slider").owlCarousel({
+            items:3,
+            itemsDesktop:[800,2],
+            itemsDesktopSmall:[990,1],
+            itemsTablet:[768,1],
+            pagination:true,
+            navigation:false,
+            navigationText:["",""],
+            slideSpeed:1000,
+            autoPlay:true
+        });
+    });
+    </script>        
+<script>
+    window.onscroll=function(){func()};
+    var h=document.getElementById("header");
+    var s=h.offsetTop;
+    function func()
+    {
+        if(window.pageYOffset>s)
+            {
+                h.classList.add("sticky");
+            }
+        else
+        {
+           h.classList.remove("sticky"); 
+        }
+    }  
+</script>
+<script src="{%static 'js/bootstrap.bundle.min.js'%}"></script>
+<script src="{%static 'js/bootstrap.min.js'%}"></script>
+<script src="{%static 'js/aos.js'%}"></script>
+<script>
+    AOS.init({
+    	duration:1000
+    });
+</script>
+</body>
+</html>

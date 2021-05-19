@@ -1,0 +1,111 @@
+{% extends 'base.html'%}
+{% block content %}
+{% load static %}
+<!-- <html>
+<head>
+    <title>login page</title>
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/icofont.min.css" rel="stylesheet"> -->
+    <style>
+        .bg1{background: url("{%static 'images/pexels-cottonbro-3585095.jpg'%}");background-size: cover;left:-150px;position: relative;border-radius: 50% ;}
+        .bgg{background:linear-gradient(to right,#01b1d7,orange);height: 100%}
+        .in{border:none!important; background-color: rgba(0,0,0,0) !important;border-radius: 0px!important;border-bottom: 2px solid black !important;outline: none;}
+        .inn{border: none!important;background-color: rgba(0,0,0,0) !important;border-radius: 0px!important;border-bottom: 2px solid black !important;outline: none}
+        .btn{background-color:#01b1d7;color:white}
+        .ii{color:white}
+        .iii{color:#01b1d7}
+        input:focus{box-shadow: none!important}
+        input::placeholder{color:white!important}
+    </style>
+<!-- </head>
+<body> -->
+<div class="container-fluid bgg">
+    <div class="row mb-5">
+        <div class="col-md-2"></div>
+        <div class="col-md-8 p-5 border shadow" style="border-radius: 2em ; margin-top: 7%;margin-bottom: 5px;">
+        <div class="row">
+            <div class="col-md-6 bg1 pb-5 pe-5"></div>
+            <div class="col-md-6 pt-5 pb-5 pe-5">
+                <h1 class="text-center"><i class="icofont-ui-user iii"></i></h1>
+                <h2 class="text-center mb-5" >LOG IN</h2>
+                <form action="" id="form1" method='POST' enctype="multipart/form-data">
+                    {% csrf_token %}
+<!--            <div class="form-floating">-->
+                    <div class="input-group mb-3">
+                        <input type="text" name="type" value="1" hidden>
+                        <span class="input-group-text inn"><i class="icofont-email"></i></span>
+                        <input type="email" id="e" autofocus placeholder="Enter Your Email" class="form-control in" name="email">
+<!--            <label for="e">Enter Your Email</label>-->
+                    </div>
+                    <div class="input-group ">
+                        <span class="input-group-text inn"><i class="icofont-lock"></i></span>
+                        <input type="text" class="form-control in" placeholder="Password" name="password">
+                        <span class="input-group-text inn"><i class="icofont-eye"></i> </span>
+                    </div>
+                <center><button type="submit" class="btn mt-3" name="save">Log In</button></center>
+                </form>
+                <center><a href="{%url 'fp'%}" style="color: white">Frogot Password?</a></center>
+                
+                <center><button type="button" class="btn btn-primary mt-3" data-bs-toggle="modal" data-bs-target="#exampleModal" style="background-color: #00a400; border: #00a400">Create New Account</button></center>
+                
+                <div class="modal fade " id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" style="margin-top: 7%">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title" id="exampleModalLabel">Sign Up</h4>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                        <div class="modal-body" style="background: linear-gradient(to right, #7df9ff,orange)" >
+                            
+                            <form action="" id="form1" method='POST' enctype="multipart/form-data">
+                                {% csrf_token %}
+                                <div class="row" >
+                                    <input type="text" name="type" value="2" hidden>
+                                    <div class="b mb-5" style="border-color: #2b2b2b ;border-width: 2px;border-bottom-style: solid"></div>
+                                    <div class="col-md-6">
+                                        <font color="red">*</font>
+                                        <label for="f">First Name</label>
+                                        <input type="text" required autofocus pattren="[A-Z a-z]{3,20}" id="f" title="[A-Z a-z]" class="form-control mb-2" name="fn">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="l">&nbsp;&nbsp;Last Name</label>
+                                        <input type="text" required pattren="[A-Z a-z]{3,20}" id="l" title="[A-Z a-z]" class="form-control mb-2" name="ln">
+                                    </div>
+                                </div>
+                                <font color="red">*</font>
+                                <label for="e">Email address or Mobile number</label>
+                                <input type="text" id="e" class="form-control mb-2" name="em">
+                                
+                                <font color="red">*</font>
+                                <label for="pass">Password</label>
+                                <input type="password" id="pass" class="form-control mb-2" name="pas">
+                                
+                                <font color="red">*</font>
+                                <label>Confirm Password</label>
+                                <input type="password" id="cpass" class="form-control mb-4" name="cpass" >
+                                
+                                <center><input type="submit" class="btn btn-sm" style="background-color: #00a400; color: white" name="save" value="Sign Up"></center>
+                            </form>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+                <script src="{%static 'js/bootstrap.bundle.min1.js'%}"></script>
+            </div>
+            </div>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+</div>   
+<input type="text" value="{{res}}" id="result" hidden>
+<script src="{%static 'js/bootstrap.bundle.min.js'%}"></script>
+<script>
+
+var res = document.getElementById("result")
+if (res.value == "2"){
+    alert("Invalid Credentials")
+}
+</script>
+
+{% endblock %}
+<!-- </html> -->
