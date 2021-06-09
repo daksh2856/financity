@@ -1,0 +1,19 @@
+{%extends 'index1.html'%}
+{% load static%}
+{% block content %}
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville&display=swap" rel="stylesheet">
+<style>
+    .m{font-size: 25px;font-family: 'Libre Baskerville', serif;}
+</style>
+<div class="row">
+    <div class="col-md-12 mt-5">
+        <i class="icofont-rounded-double-right icofont-2x"></i><a class=" mt-4 m" href="{%url 'g1'%}">VISUALIZE TO COMPARE THE GDP OF TWO COUNTRIES  </a><br><br>
+        <i class="icofont-rounded-double-right icofont-2x"></i><a class=" m" href="{%url 'g2'%}">VISUALIZE GDP GROWTH IN SPECIFICED PERIOD FOR SPECIFIC COUNTRY</a><br><br>
+        <i class="icofont-rounded-double-right icofont-2x"></i><a class="m" href="{%url 'g3'%}">VISUALIZE GDP GROWTH IN SPECIFICED COUNTRIES FOR SPECIFIC YEAR</a><br><br>
+        <i class="icofont-rounded-double-right icofont-2x"></i><a class="m" href="{%url 'g4'%}">VISUALIZE TO COMPARE THE GDP WITH DIFFERENT COUNTERIES</a><br><br>
+        <i class="icofont-rounded-double-right icofont-2x"></i><a class="m" href="{%url 'g5'%}">VISUALIZE THE GDP OF TOP 10 COUNTRIES</a><br><br>
+        <i class="icofont-rounded-double-right icofont-2x"></i><a class="m" href="{%url 'g6'%}">VISUALIZE THE GDP OF LAST 10 COUNTRIES</a><br><br>
+    </div>
+</div>
+{% endblock %}

@@ -2,6 +2,7 @@
 {% extends 'base.html'%}
 {%load static%}
 {% block content %}
+
 <!-- <html>
 <head>
     <title>BLOG</title>
@@ -21,7 +22,7 @@
             <center><img src="{%static 'images/bimg.jpeg'%}" height="200px" width="200px" class="blog-img"></center></div> 
         <div class="col-md-6  mt-5 mb-5">
             
-            <form action=""  method='POST'>
+            <form action=""  method='POST' enctype="multipart/form-data">
                 {% csrf_token %}
                 <h5>Subject</h5>
                 <input type="text" class="form-control mb-4" name="title">

@@ -1,0 +1,172 @@
+{%load static%}
+<!doctype html>
+<html lang="en">
+  <head>
+  	<title>Sidebar 01</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="{%static 'sidebar-01/css/style.css'%}">
+    <link href="{%static 'css/icofont.min.css'%}" rel="stylesheet">
+    <link href="{%static 'sidebar/01/css/icofont.min.css'%}" rel="stylesheet">
+    <link href="{%static 'css/all.min.css'%}" rel="stylesheet">
+
+    <style>
+        .im{height:100px;width: 100px;border-radius: 50%;}
+        .i{color: white;}
+        .namee{color:white;}
+        .nameee{color:white;text-align: center;}
+
+    </style>
+  </head>
+  <body>
+		
+		<div class="wrapper d-flex align-items-stretch">
+			<nav id="sidebar">
+				<div class="p-4 pt-5">
+                <a href="{%url 'pro'%}" class="img logo rounded-circle ">
+                    {% if user.profile_image %}
+                    <img src="{{user.profile_image.url}}" id="i" class="im">
+                    {% else %}
+                      <img src="{%static 'images/addimg.jpg'%}" id="i" class="im">
+                    {% endif %}
+                </a>
+                <h5 class="namee text-center">{{user.fname}} {{user.lname}}</h5>
+                <h6 class="country nameee">{{user.address}}</h6>
+	        <ul class="list-unstyled components mt-4 mb-5">
+              <li class="active">
+                <a href="{%url 'dash'%}">
+                    <i class="fas fa-home mr-2"></i>Home
+                </a>
+              </li>
+              <li>
+                <a href="{%url 'pro'%}">
+                <i class="fas fa-user mr-2"></i>Profile</a>
+              </li>
+              <li>
+                <a href="#pageSubmenu2" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fas mr-2 fa-arrow-alt-circle-right"></i>NSE</a>
+                <ul class="collapse list-unstyled" id="pageSubmenu2">
+                    <li>
+                        <a href="{%url 'n'%}">GET NSE INDEX QUOTE</a>
+                    </li>
+                    <li>
+                        <a href="{%url 'n1'%}">ADVANCES/DECLINES</a>
+                    </li>
+                    <li>
+                        <a href="{%url 'n2'%}">NSE TOP GAINERS </a>
+                    </li>
+                    <li>
+                        <a href="{%url 'n3'%}">NSE TOP LOOSERS </a>
+                    </li>
+                </ul>
+                </li>
+              <li>
+                <a href="#pageSubmenu1" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fas mr-2 fa-arrow-alt-circle-right"></i>DYNAMIC VISUZALIZATION</a>
+                <ul class="collapse list-unstyled" id="pageSubmenu1">
+                    <li>
+                        <a href="{%url 'dy1'%}">GDP</a>
+                    </li>
+                    <li>
+                        <a href="{%url 'dy2'%}">Agriculture, forestry, and fishing, value added</a>
+                    </li>
+                    <li>
+                        <a href="{%url 'dy4'%}">Expense</a>
+                    </li>
+                    <li>
+                        <a href="{%url 'dy3'%}">Total reserves (includes gold)</a>
+                    </li>
+                </ul>
+            </li>
+	          <li>
+              <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fas mr-2 fa-arrow-alt-circle-right"></i>PRIDICTION</a>
+              <ul class="collapse list-unstyled" id="pageSubmenu">
+                <li>
+                    <a href="{%url 'p1'%}">GDP</a>
+                </li>
+                <li>
+                    <a href="#">Page 2</a>
+                </li>
+                <li>
+                    <a href="#">Page 3</a>
+                </li>
+              </ul>
+	          </li>
+            
+	        <li>
+                <a href="{%url 'h'%}">
+                    <i class="fas fa-bell mr-2"></i>Help & Support
+                </a>
+            </li>
+            <li>
+                <a href="{%url 'se'%}">
+                    <i class="fas fa-cog mr-2"></i></span>Setting
+                </a>
+            </li>
+            <li>
+                <a href="{%url 're'%}">
+                    <i class="fas fa-chart-pie mr-2"></i>Review
+                </a>
+            </li>
+            <li>
+                <a href="{%url 'logout'%}">
+                    <i class="fas fa-sign-out-alt mr-2"></i>Sign out
+                </a>
+            </li>
+	        </ul>
+
+	        <div class="footer">
+	        	<p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+						  Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved <i class="icon-heart" aria-hidden="true"></i>  <a href="https://colorlib.com" target="_blank"></a>
+						  <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+	        </div>
+
+	      </div>
+    	</nav>
+
+        <!-- Page Content  -->
+      <div id="content" class="p-4 p-md-5">
+
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+          <div class="container-fluid">
+
+            <button type="button" id="sidebarCollapse" class="btn btn-primary">
+              <i class="fa fa-bars"></i>
+              <span class="sr-only">Toggle Menu</span>
+            </button>
+            <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="fa fa-bars"></i>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="nav navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Portfolio</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Contact</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+{%block content%}
+
+{% endblock %}
+        
+      </div>
+		</div>
+
+    <script src="{%static 'sidebar-01/js/jquery.min.js'%}"></script>
+    <script src="{%static 'sidebar-01/js/popper.js'%}"></script>
+    <script src="{%static 'sidebar-01/js/bootstrap.min.js'%}"></script>
+    <script src="{%static 'sidebar-01/js/main.js'%}"></script>
+  </body>
+</html>

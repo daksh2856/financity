@@ -31,31 +31,44 @@
             right:70px;
             bottom:40px;
             transition: 0.25s;
+            margin-top: auto;
         }
         .plus:active{background-color: teal;}
+    
     </style>
 <!-- </head>
 <body> -->
-        <a href="{%url 'b1'%}"><i class="icofont-plus plus"></i></a>
+        
         <div class="container-fluid bg-light ">
+            <a href="{%url 'b1'%}"><i class="icofont-plus plus nsticky" id="plus"></i></a>
             <div class="container ">
+
+                {% for blog in blogs %}
+                {% if forloop.counter == 1 %}
             <div class="row">
                 <div class="col-md-8 mt-5">
                     <div class="inner">
-                    <a style="text-decoration: none" href="#"><img src="{%static 'images/about/blog.jpeg'%}" width="900" height="500"/></a>
+                        {% if blog.image %}
+                        <a style="text-decoration: none" href="#"><img src="{{blog.image.url}}" width="900" height="500"/></a>
+                        {% else %}
+                        <a style="text-decoration: none" href="#"><img src="{%static 'images/about/blog.jpeg'%}" width="900" height="500"/></a>
+                        {% endif %}
+                  
                     </div>
                     <div class="container bg-white">
-                        <h1 class=""><label class="mt-5 mb-3">This Is An Awesome Sticky Post</label></h1>
+                       
+                        <h1 class=""><label class="mt-5 mb-3">{{blog.0.subject}}</label></h1>
                         <p>
-                            <i class="icofont-clock-time"><a href="#" style="text-decoration:none;color:black">&nbsp;&nbsp;JUNE 6, 2016</a></i>
-                            <i class="icofont-copy ms-3"><a href="#" style="text-decoration:none;color:black">&nbsp;&nbsp;JOHN SMITH</a></i>
-                            <i class="icofont-blogger ms-3"><a href="#" style="text-decoration:none;color:black">&nbsp;&nbsp;BLOG</a></i>
+                            <i class="icofont-clock-time"><a href="#" style="text-decoration:none;color:black">&nbsp;&nbsp;{{blog.published_date}}</a></i>
+                            <i class="icofont-copy ms-3"><a href="#" style="text-decoration:none;color:black">&nbsp;&nbsp;{{blog.user_id.fname}}</a></i>
+                            <i class="icofont-like ms-3"></i><a href="#" style="text-decoration:none;color:black">&nbsp;&nbsp;like</a></i>
                             <i class="icofont-comment ms-3"><a href="#" style="text-decoration:none;color:black">&nbsp;&nbsp;3</a></i>
                         </p>
                         <br/>
-                        <p style="font-size: 20px">A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my whole heart. I am alone, and feel the charm of existence in this spot, which was created for the bliss of souls like mine. I am so happy, my dear friend, so absorbed in the exquisite sense of mere tranquil existence, that I neglect...</p>
+                        <p style="font-size: 20px">{{blog.description|truncatechars:10}}</p>
                         <br/>
-                        <input type="submit" value="Read More" class="p-2 bg-primary mb-4" style="color: antiquewhite">
+                        <a class="p-2 bg-primary mb-4" style="color: antiquewhite" href="{% url 'b3' blog.id %}">Read More</a>
+                       
                     </div>
                 </div>
                 <div class="col-md-4 mt-5"><b>Text Widget</b>
@@ -95,66 +108,39 @@
                 
             </div>
             </div>
-                <div class="row">
+            {% else %}
+            <div class="row">
                 <div class="col-md-8 mt-5">
                     <div class="inner">
-                    <a style="text-decoration: none" href="#"><img src="{%static 'images/about/blog2.jpeg'%}" width="900" height="500"/></a>
+                        {% if blog.image %}
+                        <a style="text-decoration: none" href="#"><img src="{{blog.image.url}}" width="900" height="500"/></a>
+                        {% else %}
+                        <a style="text-decoration: none" href="#"><img src="{%static 'images/about/blog.jpeg'%}" width="900" height="500"/></a>
+                        {% endif %}
                     </div>
                     <div class="container bg-white">
-                        <h1 class=""><label class="mt-5 mb-3">I sink under the weight</label></h1>
+                        <h1 class=""><label class="mt-5 mb-3">{{blog.subject}}</label></h1>
                         <p>
-                            <i class="icofont-clock-time"><a href="#" style="text-decoration:none;color:black">&nbsp;&nbsp;JUNE 6, 2016</a></i>
-                            <i class="icofont-copy ms-3"><a href="#" style="text-decoration:none;color:black">&nbsp;&nbsp;JOHN SMITH</a></i>
-                            <i class="icofont-blogger ms-3"><a href="#" style="text-decoration:none;color:black">&nbsp;&nbsp;BLOG</a></i>
+                            <i class="icofont-clock-time"><a href="#" style="text-decoration:none;color:black">&nbsp;&nbsp;{{blog.published_date}}</a></i>
+                            <i class="icofont-copy ms-3"><a href="#" style="text-decoration:none;color:black">&nbsp;&nbsp;{{blog.user_id.fname}}</a></i>
+                            <i class="icofont-like ms-3"></i><a href="#" style="text-decoration:none;color:black">&nbsp;&nbsp;like</a></i>
                             <i class="icofont-comment ms-3"><a href="#" style="text-decoration:none;color:black">&nbsp;&nbsp;3</a></i>
                         </p>
                         <br/>
-                        <p style="font-size: 20px">A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my whole heart. I am alone, and feel the charm of existence in this spot, which was created for the bliss of souls like mine. I am so happy, my dear friend, so absorbed in the exquisite sense of mere tranquil existence, that I neglect...</p>
+                        <p style="font-size: 20px">{{blog.description}}</p>
                         <br/>
-                        <input type="submit" value="Read More" class="p-2 bg-primary mb-4" style="color: antiquewhite">
+                        <a class="p-2 bg-primary mb-4" style="color: antiquewhite" href="{% url 'b3' blog.id %}">Read More</a>
                     </div>
                 </div>
                 </div>
-                <div class="row">
-                <div class="col-md-8 mt-5">
-                    <div class="inner">
-                    <a style="text-decoration: none" href="#"><img src="{%static 'images/about/blog3.jpeg'%}" width="900" height="500"/></a>
-                    </div>
-                    <div class="container bg-white">
-                        <h1 class=""><label class="mt-5 mb-3">Possession of my entire soul</label></h1>
-                        <p>
-                            <i class="icofont-clock-time"><a href="#" style="text-decoration:none;color:black">&nbsp;&nbsp;JUNE 6, 2016</a></i>
-                            <i class="icofont-copy ms-3"><a href="#" style="text-decoration:none;color:black">&nbsp;&nbsp;JOHN SMITH</a></i>
-                            <i class="icofont-blogger ms-3"><a href="#" style="text-decoration:none;color:black">&nbsp;&nbsp;BLOG</a></i>
-                            <i class="icofont-comment ms-3"><a href="#" style="text-decoration:none;color:black">&nbsp;&nbsp;3</a></i>
-                        </p>
-                        <br/>
-                        <p style="font-size: 20px">A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my whole heart. I am alone, and feel the charm of existence in this spot, which was created for the bliss of souls like mine. I am so happy, my dear friend, so absorbed in the exquisite sense of mere tranquil existence, that I neglect...</p>
-                        <br/>
-                        <input type="submit" value="Read More" class="p-2 bg-primary mb-4" style="color: antiquewhite">
-                    </div>
-                </div>
-                </div>
-                <div class="row">
-                <div class="col-md-8 mt-5 mb-5">
-                    <div class="inner">
-                    <a style="text-decoration: none" href="#"><img src="{%static 'images/about/blog4.jpg'%}" width="900" height="500"/></a>
-                    </div><div class="container bg-white">
-                        <h1 class=""><label class="mt-5 mb-3">Pityful a rethoric question ran</label></h1>
-                        <p>
-                            <i class="icofont-clock-time"><a href="#" style="text-decoration:none;color:black">&nbsp;&nbsp;JUNE 6, 2016</a></i>
-                            <i class="icofont-copy ms-3"><a href="#" style="text-decoration:none;color:black">&nbsp;&nbsp;JOHN SMITH</a></i>
-                            <i class="icofont-blogger ms-3"><a href="#" style="text-decoration:none;color:black">&nbsp;&nbsp;BLOG</a></i>
-                            <i class="icofont-comment ms-3"><a href="#" style="text-decoration:none;color:black">&nbsp;&nbsp;3</a></i>
-                        </p>
-                        <br/>
-                        <p style="font-size: 20px">A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my whole heart. I am alone, and feel the charm of existence in this spot, which was created for the bliss of souls like mine. I am so happy, my dear friend, so absorbed in the exquisite sense of mere tranquil existence, that I neglect...</p>
-                        <br/>
-                        <input type="submit" value="Read More" class="p-2 bg-primary mb-4" style="color: antiquewhite">
-                    </div>
-                </div>
-                </div>
-                
+            {% endif %}
+
+            {% endfor %}
+
+
+
+   
+              
             </div>
         
         </div>

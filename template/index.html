@@ -17,17 +17,23 @@
     <link href="{%static 'sidebar/01/css/icofont.min.css'%}" rel="stylesheet">
     <link href="{%static 'sidebar/01/css/ss.css'%}" rel="stylesheet">
     <link href="{%static 'sidebar/01/css/all.min.css'%}" rel="stylesheet">
+    <link href="{%static 'css/icofont.min.css'%}" rel="stylesheet">
 
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Train+One&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Reggae+One&family=Train+One&display=swap" rel="stylesheet">
-
+<style>
+  .bur{color: white;}
+  .bg{background-color: #01b1d7;}
+  .l{text-decoration: none;color:  white;font-size:25px}
+  .l:hover{color: orange;}
+</style>
     <title>Sidebar</title>
   </head>
   <body style="background: linear-gradient(to right,white,orange)">
     <aside class="sidebar">
       <div class="toggle">
-        <a href="#" class="burger js-menu-toggle" data-toggle="collapse" data-target="#main-navbar"><span></span></a>
+        <a href="#" class="burger js-menu-toggle bur" data-toggle="collapse " data-target="#main-navbar"><span></span></a>
       </div>
       <div class="side-inner">
         <div class="profile">
@@ -41,8 +47,71 @@
         
         <div class="nav-menu">
           <ul>
-            <li class="active"><a href="{%url 'b'%}"><span class="icon-home mr-3"></span>  Home</a></li>
-            <li><a href="{%url 'pro'%}"><span class="icon-search2 mr-3"></span>  Profile</a></li>
+            <li class="active">
+              <a href="{%url 'dash'%}">
+                <span class="icon-home mr-3"></span>Home
+              </a>
+            </li>
+            <li>
+              <a href="{%url 'pro'%}">
+              <i class="fas fa-user ms-3"></i>Profile</a>
+            </li>
+            <li>
+              <nav class="navbar navbar-expand-lg  ms-auto">
+              <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                  <ul class="navbar-nav ms-4">
+                      <li class="nav-item dropdown">
+                          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">NSE</a>
+                          <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <li><a class="dropdown-item" href="{%url 'n'%}">GET NSE INDEX QUOTE</a></li>
+                            <li><a class="dropdown-item" href="{%url 'n1'%}">ADVANCES/DECLINES</a></li>
+                            <li><a class="dropdown-item" href="{%url 'n2'%}">NSE TOP GAINERS </a></li>
+                            <li><a class="dropdown-item" href="{%url 'n3'%}">NSE TOP LOOSERS </a></li>
+                          </ul>
+                      </li>
+                  </ul>
+              </div>
+              </nav>
+            </li>
+            <li>
+              <nav class="navbar navbar-expand-lg  ms-auto">
+              <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                  <ul class="navbar-nav ms-4">
+                      <li class="nav-item dropdown">
+                          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">Dynamic Visuzalization</a>
+                          <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <li>
+                              <a class="dropdown-item" href="{%url 'dy1'%}">GDP</a>
+                            </li>
+                            <li>
+                              <a class="dropdown-item" href="{%url 'dy2'%}">Agriculture, forestry, and fishing, value added</a>
+                            </li>
+                            <li>
+                              <a class="dropdown-item" href="{%url 'dy4'%}">Expense</a>
+                            </li>
+                            <li>
+                              <a class="dropdown-item" href="{%url 'dy3'%}">Total reserves (includes gold)</a>
+                            </li>
+                          </ul>
+                      </li>
+                  </ul>
+              </div>
+              </nav>
+            </li>
+            <li>
+              <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">PRIDICTION</a>
+              <ul class="collapse list-unstyled" id="pageSubmenu">
+                <li>
+                    <a href="{%url 'p1'%}">GDP</a>
+                </li>
+                <li>
+                    <a href="#">Page 2</a>
+                </li>
+                <li>
+                    <a href="#">Page 3</a>
+                </li>
+              </ul>
+	          </li>
             <li><a href="{%url 'h'%}"><span class="icon-notifications mr-3"></span>  Help & Support</a></li>
             <li><a href="#"><span class="icon-location-arrow mr-3"></span>  Setting</a></li>
             <li><a href="{%url 're'%}"><span class="icon-pie-chart mr-3"></span>  Review</a></li>
@@ -51,27 +120,56 @@
         </div>
       </div>
     </aside>
-   
+   <div class="container-fluid">
+     <div class="container">
+
+
+      <nav class="navbar navbar-expand-lg bg">
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav ms-auto">
+                  <li class="nav-item ">
+                    <a href="{%url 'he'%}" class="l">Home&nbsp;&nbsp;<i class="icofont-ui-home icofont-2x l"></i></a>
+                  </li>
+                  <li class="nav-item ms-3 ">
+                    <a href="{%url 'pro'%}" class="l">  Profile&nbsp;&nbsp;<i class="icofont-user-alt-4 icofont-2x l"></i></a>
+                  </li>
+                  <li class="nav-item ms-3 ">
+                    <a href="{%url 'logout'%}" class="l"> Sign out&nbsp;&nbsp;<i class="icofont-logout icofont-2x l"></i></a>
+                  </li>
+                    
+                    
+                    
+                </ul>
+            </div>
+        </div>
+    </nav>
+       
     <main>
-      <div class="site-section">
-        <div class="container">
-          <div class="row justify-content-center">
+        
             {% block content %}
+                  
+
 
             {% endblock %}
-
-
-          </div>
-        </div>
-      </div>  
+        
     </main>
+    </div>
     
-    
+  </div> 
 
+
+
+
+
+
+  
   <script src="{%static 'sidebar/01/js/jquery-3.3.1.min.js'%}"></script>
   <script src="{%static 'sidebar/01/js/popper.min.js'%}"></script>
   <script src="{%static 'sidebar/01/js/bootstrap.min.js'%}"></script>
   <script src="{%static 'sidebar/01/js/main.js'%}"></script>
   <script src="{%static 'sidebar/01/js/bootstrap.bundle.min.js'%}"></script>
+  <script src="{%static 'js/bootstrap.bundle.min.js'%}"></script>
+<script src="{%static 'js/bootstrap.min.js'%}"></script>
+<script src="{%static 'js/aos.js'%}"></script>
   </body>
 </html>

@@ -30,7 +30,7 @@
 
         .bg{background-color: #01b1d7; color:white}
         .navbar-nav .nav-item .nav-link{color: white}
-        .navbar-nav .nav-item .nav-link:hover{color: white}
+        .navbar-nav .nav-item .nav-link:hover{color:lightblue}
         .sticky{position:fixed;top: 0;max-width: 100%;background-color:black;width: 100%;left:0;z-index: 999;}
         .sticky .navbar-nav
         {
@@ -99,12 +99,8 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{%url 'cu'%}">CONTACT US</a>
                         </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">DATA & STATISTICS</a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <li><a class="dropdown-item" href="#">ANALYSIS</a></li>
-                                <li><a class="dropdown-item" href="#">PREDICTION</a></li>
-                            </ul>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{%url 'dash'%}">Dashboard</a>
                         </li>
                     </ul>
                 </div>
@@ -126,7 +122,7 @@
     <div class="progress-bar bg-light" role="progressbar" style="width: 7%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="0"></div>
     <div class="progress-bar u11" role="progressbar" style="width: 100% ;" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
 </div>
-<div class="container-fluid">
+<div class="container-fluid" id="footer">
 <div class="row text-white" style="background-color: black;">
 <div class="col-md-1 "></div>
 <div class="col-md-3 ">

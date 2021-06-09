@@ -1,137 +1,94 @@
-{%extends 'index.html'%}
+{%extends 'index1.html'%}
 {% load static%}
 {% block content %}
-<!-- <!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Source+Serif+Pro:400,600&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="{%static 'sidebar/01/fonts/icomoon/style.css'%}">
-    <link rel="stylesheet" href="{%static 'sidebar/01/css/owl.carousel.min.css'%}">
-    <link rel="stylesheet" href="{%static 'sidebar/01/css/bootstrap.min.css'%}">
-    <link rel="stylesheet" href="{%static 'sidebar/01/css/style.css'%}">
-    <link href="{%static 'sidebar/01/css/icofont.min.css'%}" rel="stylesheet">
-    <link href="{%static 'sidebar/01/css/ss.css'%}" rel="stylesheet">
-    <link href="{%static 'sidebar/01/css/all.min.css'%}" rel="stylesheet">
+<title>view profile</title>
+  <style>
+    .ww{font-family: 'Reggae One'!important}
+    .w{font-family:'Train One';color: black!important;font-size: 25px;margin-top: -15px;}
+    .ic{font-size: 30px;}
 
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Train+One&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&family=Train+One&display=swap" rel="stylesheet"> -->
-
-    <title>view profile</title>
-    <style>
-        .ww{font-family: 'Reggae One'!important}
-        .w{font-family:'Train One';color: black!important}
-        .w:hover{color: white!important}
-        .im
-        {
-            border-radius:50%;
-            height:250px;
-            width: 350px;
-            border:5px solid;
-            border-color:white;
-        }
-        .w{color: white;border-bottom: none}
-        .l{padding:10px;border: 2px;border-radius:50%;font-size:25px;background: rgba(0,0,0,0.5)}
-    </style>
-  <!-- </head>
-  <body style="background: linear-gradient(to right,white,orange)">
-    <aside class="sidebar">
-      <div class="toggle">
-        <a href="#" class="burger js-menu-toggle" data-toggle="collapse" data-target="#main-navbar"><span></span></a>
-      </div>
-      <div class="side-inner">
-        <div class="profile">
-          <img src="{%static 'sidebar/01/images/person_profile.jpg'%}" alt="Image" class="img-fluid">
-          <h3 class="name">Debby Williams</h3>
-          <span class="country">New York, USA</span>
-        </div>
-
-             <div class="counter d-flex justify-content-center">
-          </div>
-        
-          <div class="nav-menu">
-            <ul>
-              <li class="active"><a href="{%url 'b'%}"><span class="icon-home mr-3"></span>  Home</a></li>
-              <li><a href="{%url 'pro'%}"><span class="icon-search2 mr-3"></span>  Profile</a></li>
-              <li><a href="{%url 'h'%}"><span class="icon-notifications mr-3"></span>  Help & Support</a></li>
-              <li><a href="#"><span class="icon-location-arrow mr-3"></span>  Setting</a></li>
-              <li><a href="{%url 're'%}"><span class="icon-pie-chart mr-3"></span>  Review</a></li>
-              <li><a href="{%url 'l'%}"><span class="icon-sign-out mr-3"></span>  Sign out</a></li>
-            </ul>
-          </div>
-        </div>
-      </aside>
-  <main>-->
-  
-  <div class="container">
+    .imm
+    {
+        border-radius:50%;
+        height:250px;
+        width: 250px;
+        border:5px solid;
+        border-color:white;
+    }
+    .l{padding-left: 9px;padding-right: 9px;border-radius:50%;font-size:30px;background: rgba(0,0,0,0.5)}
+    .side{overflow: hidden;}
+  </style>
+  <div class="container-fluid">
     <div class="row">
-        <div class="col-md-2"></div>
-        <div class="col-md-8 " >
-            <div class="row">
-                <div class="col-md-4"></div>
-                <div class="col-md-4">
-                    <center>
-                        <img src="{%static 'sidebar/01/images/person_profile.jpg'%}" id="i" class="w-100 im mt-5">
-                        <!-- <a href="{%static 'sidebar/01/images/person_profile.jpg'%}" for="i" target="_blank">click</a> -->
-                        <input type="file" id="file" name="save" class="form-check-input" hidden>
-                        <label for="file" id="selector" class="l" style="margin-top:-35px;">
-                            <i class="fas  fa-camera text-light"></i>
-                        </label>
-                    </center>
-                    <i class="fas fa-2x fa-male mt-2"></i><i class="fas fa-2x fa-female "></i><label class="name ww" style="font-size: 25px">Debby Williams</label>
+        <div class="col-md-12 text-center">
+          <form action="" id="form1" method='POST' enctype="multipart/form-data">
+            {% csrf_token %}  
+
+            {% if user.profile_image %}
+            <img src="{{user.profile_image.url}}" id="i" class=" imm mt-4">
+            {% else %}
+              <img src="{%static 'images/addimg.jpg'%}" id="i" class=" imm mt-4">
+            {% endif %}
+                <!-- <a href="{%static 'sidebar/01/images/person_profile.jpg'%}" for="i" target="_blank">click</a> -->
+                <input type="file" id="file" name="img" class="form-check-input" hidden >
+                <input type="submit" id="imgupload" hidden>
+                <div style="margin-top: -55px;margin-left: 135px;">
+                  <label for="file" id="selector" class="l" ><i class="fas  fa-camera text-light"></i></label>
+          
                 </div>
-                <div class="col-md-4"></div>
-            </div>
+                </form>          
+          </div>
+    </div>
+    <div class="row mt-4 border shadow" style="border-radius: 24px;">
+      <div class="col-md-2 mt-3"></div>
+      <div class="col-md-6 mt-3">
+      <h1 class="ww mb-5">Account Info</h1>
+          <div class="row">
+              <div class="col-md-2 mb-5">
+              <div>
+                {% if user.gender == "M"%}
+                <i class="fas fa-3x fa-male mt-2 mb-3 mr-3"></i>
+                {% elif user.gender == "F"%}
+                <i class="fas fa-3x fa-female mt-2 mb-3 mr-3 ">
+                {% endif %}
+              </div>
+              <div><i class="fas fa-3x fa-mobile mt-5 mb-3 ms-1"></i></div>
+              <div><i class="fas fa-3x fa-envelope mt-5 mb-3 "></i></div>
+              <div><i class="fas fa-3x fa-map-marked-alt mb-3 mt-5"></i></div>
+              <div><i class="fas fa-3x fa-birthday-cake mb-3 mt-5"></i></div>
+              </div>
+              <div class="col-md-8">
+              <div class="ic"><b>NAME</b></div>
+                  <label class="w">{{user.fname}} {{user.lname}}</label>
+              <div style="margin-top: 5px" class="ic"><b>MOBILE</b></div>
+                  <label class="w">{{user.phone}}</label>
+              <div style="margin-top: 8px" class="ic"><b>EMAIL</b></div>
+                  <label class="w">{{user.email}}</label>
+              <div style="margin-top: 10px" class="ic"><b>ADDRESS</b></div>
+                  <label class="w">{{user.address}}</label>
+              <div style="margin-top:10px" class="ic"><b>D.O.B</b></div>
+                  <label class="w">{{user.dob}}</label>
+              </div>
+          </div>
+      </div>
+              <div class="col-md-3 mt-3">
+                 <h2><a  href="{%url 'ep'%}" class="ww " style="text-decoration: none"><i class="fas fa-pencil-alt mr-2"></i>Edit Profile</a></h2>
+              </div>
+          </div>
         </div>
-        <div class="col-md-2"></div>
+        </div>
     </div>
           
-    <div class="row mt-3">
-        <div class="col-md-3"></div>
-        <div class="col-md-6">
-         <h1 class="w mb-5">Account Info</h1>
-            <div class="row">
-                <div class="col-md-2 mb-5">
-                <div><i class="fas fa-2x fa-user-circle mt-2"></i></div>
-                <div><i class="fas fa-2x fa-mobile mt-5 ms-1"></i></div>
-                <div><i class="fas fa-2x fa-envelope mt-5 "></i></div>
-                <div><i class="fas fa-2x fa-map-marked-alt mt-5"></i></div>
-                <div><i class="fas fa-2x fa-birthday-cake mt-5"></i></div>
-                </div>
-                <div class="col-md-4">
-                <div><b>NAME</b></div>
-                    <label class="w">Desh Deepak</label>
-                <div style="margin-top: 35px"><b>MOBILE</b></div>
-                    <label class="w">Desh Deepak</label>
-                <div style="margin-top: 30px"><b>EMAIL</b></div>
-                    <label class="w">Desh Deepak</label>
-                <div style="margin-top: 30px"><b>ADDRESS</b></div>
-                    <label class="w">Desh Deepak</label>
-                <div style="margin-top: 30px"><b>D.O.B</b></div>
-                    <label class="w">Desh Deepak</label>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3">
-           <h2><a  href="{%url 'ep'%}" class="w " style="font-size: 28px;text-decoration: none"><i class="fas fa-pencil-alt"></i>Edit Profile</a></h2>
-        </div>
-    </div>
-  </div>
+    
+
+  <script src='{% static "sidebar/01/js/jquery-3.3.1.min.js" %}'></script>
+  <script>
+    $('#file').change(function(){
+      $('#imgupload').trigger('click');
+    });
+  </script>
   {% endblock %}
-  <!-- </main>
-  <script src="{%static 'sidebar/01/js/jquery-3.3.1.min.js'%}"></script>
-  <script src="{%static 'sidebar/01/js/popper.min.js'%}"></script>
-  <script src="{%static 'sidebar/01/js/bootstrap.min.js'%}"></script>
-  <script src="{%static 'sidebar/01/js/main.js'%}"></script>
-  <script src="{%static 'sidebar/01/js/bootstrap.bundle.min.js'%}"></script>
-  </body>
-</html> -->
 
 
 

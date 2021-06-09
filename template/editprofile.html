@@ -1,148 +1,82 @@
-{%extends 'index.html'%}
+{%extends 'index1.html'%}
 {% load static%}
-<!doctype html>
-<!-- <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
-
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
-
-    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500&display=swap" rel="stylesheet">
-
-    <link href="https://fonts.googleapis.com/css?family=Source+Serif+Pro:400,600&display=swap" rel="stylesheet">
-
-    <link rel="stylesheet" href="{%static 'sidebar/01/fonts/icomoon/style.css'%}">
-
-    <link rel="stylesheet" href="{%static 'sidebar/01/css/owl.carousel.min.css'%}">
-
-    
-    <link rel="stylesheet" href="{%static 'sidebar/01/css/bootstrap.min.css'%}">
-    
-    <link rel="stylesheet" href="{%static 'sidebar/01/css/style.css'%}">
-    <link href="{%static 'sidebar/01/css/icofont.min.css'%}" rel="stylesheet">
-    <link href="{%static 'sidebar/01/css/ss.css'%}" rel="stylesheet">
-    <link href="{%static 'sidebar/01/css/all.min.css'%}" rel="stylesheet"> 
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Train+One&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&family=Train+One&display=swap" rel="stylesheet"> -->
 {% block content %}
-    <title>editprofile</title>
-      <style>
-        .btn{background-color: #00a040;color: white}
-        .im{
-            border-bottom-right-radius: 30%;
-            border-top-left-radius: 30%;
-            border: 20%
+<title>editprofile</title>
+    <style>
+        
+        .im
+        {
+          border-radius: 50%;
         }
+        .ep{font-family: 'Reggae One'!important}
+        .fs{font-size: 15px;margin-left: 5px;}
     </style>
-  <!-- </head>
-  <body style="background: linear-gradient(to right,white,orange)">
-  
-    
-    <aside class="sidebar">
-      <div class="toggle">
-        <a href="#" class="burger js-menu-toggle" data-toggle="collapse" data-target="#main-navbar">
-              <span></span>
-            </a>
-      </div>
-      <div class="side-inner">
-
-        <div class="profile">
-          <img src="{%static 'sidebar/01/images/person_profile.jpg'%}" alt="Image" class="img-fluid">
-          <h3 class="name">Debby Williams</h3>
-          <span class="country">New York, USA</span>
-        </div>
-
-        <div class="counter d-flex justify-content-center">
-        </div>
-        
-        <div class="nav-menu">
-          <ul>
-            <li class="active"><a href="../../admin/header.html"><span class="icon-home mr-3"></span>Home</a></li>
-            <li><a href="../../admin/profile.html"><span class="icon-search2 mr-3"></span>Profile</a></li>
-            <li><a href="help.html"><span class="icon-notifications mr-3"></span>Help & Support</a></li>
-            <li><a href="#"><span class="icon-location-arrow mr-3"></span>Setting</a></li>
-            <li><a href="review.html"><span class="icon-pie-chart mr-3"></span>Review</a></li>
-            <li><a href="#"><span class="icon-sign-out mr-3"></span>Sign out</a></li>
-          </ul>
-        </div>
-      </div>
-      
-    </aside>
-    <main> -->
-        <div class="container">
-        
+<div class="container">
     <div class="row">
-        <div class="col-md-3 mt-5">
-           
-        </div>
-        <div class="col-md-9 mt-5 p-5 border rounded shadow">
-            <h3 class="text-center"  >Edit Profile</h3>
+        <div class="col-md-1"></div>
+        <div class="col-md-10 mt-4 p-5 border  shadow" style="border-radius: 24px;">
+            <h3 class="text-center ep"  >Edit Profile</h3>
             <h5 class="text-center mb-4">Please provide some information about yourself.</h5>
             <form class="row" method='POST'>
               {% csrf_token %}
                 <div class="col-md-6 mb-3">
-                <label for="f">First Name</label>
+                <label for="f" class="fs">First Name</label>
                     <input type="text" name="fn" class="form-control" id="f" value="{{user.fname}}">
                 </div>
+
                 <div class="col-md-6 mb-3">
-                <label for="l">Last Name</label>
+                <label for="l" class="fs">Last Name</label>
                     <input type="text" name="ln" class="form-control" id="l" value="{{user.lname}}">
                 </div>
+
                 <div class="col-md-6 mb-3">
-                <label for="c">Contact Number</label>
+                <label for="c" class="fs">Contact Number</label>
                     <input type="tel" name="cn" class="form-control" id="c" value="{{user.phone}}">
                 </div>
+
                 <div class="col-md-6 mb-3">
-                <label for="d">D.O.B</label>
+                <label for="d" class="fs">D.O.B</label>
                     <input type="date" name="dob" class="form-control" id="d" value="{{dob}}">
                 </div>
-                <div class="col-md-6 mb-3">
-                    <label for="g" class="mb-2">Gender</label><br/>
 
+                <div class="col-md-6 mb-3">
+                    <label for="g" class="mb-2 fs">Gender</label><br/>
                     {% if user.gender == 'M'%}
-                    <input type="radio" name="gender" class="form-check-input" id="g" value="Male" checked>  MALE
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    <input type="radio" name="gender" class="form-check-input mr-5" id="g" value="Male" checked>  MALE
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <input type="radio" name="gender" class="form-check-input ms-5" id="g" value="Female">  FEMALE
                     {% elif user.gender == 'F' %}
-                    <input type="radio" name="gender" class="form-check-input" id="g" value="Male" >  MALE
+                    <input type="radio" name="gender" class="form-check-input mr-5" id="g" value="Male" >  MALE
                     <input type="radio" name="gender" class="form-check-input ms-5" id="g" value="Female" checked>  FEMALE
                     {% endif %}
                 </div>
+
                 <div class="col-md-6 mb-3"></div>
+
                 <div class="col-md-6 mb-3">
-                <label for="ci">State</label>
+                <label for="ci" class="fs">State</label>
                     <input type="text" name="state" class="form-control" id="st" value="{{user.state}}">
                 </div>
+
                 <div class="col-md-6 mb-3">
-                  <label for="ci">City</label>
+                  <label for="ci" class="fs">City</label>
                       <input type="text" name="city" class="form-control" id="ci" value="{{user.city}}">
-                  </div>
+                </div>
+
                 <div class="col-md-12 mb-3">
-                <label for="add">Address</label>
-                    <textarea type="date" name="address" class="form-control" id="add" rows="5">{{user.address}}</textarea>
+                <label for="add" class="fs">Address</label>
+                    <textarea type="date" name="address" class="form-control mb-4" id="add" rows="5">{{user.address}}</textarea>
+                    <center><input type="submit" name="save1" class="btn btn-dark" value="SUBMIT"></center>
                 </div>
                 
-                <center><input type="submit" name="save1" class="btn" value="SUBMIT"></center>
+                
             </form>
         </div>
         <div class="col-md-4"></div>
     </div>
     </div>
     {% endblock %}
-        
-    <!-- </main>
-    
-    
-
-    <script src="{%static 'sidebar/01/js/jquery-3.3.1.min.js'%}"></script>
-    <script src="{%static 'sidebar/01/js/popper.min.js'%}"></script>
-    <script src="{%static 'sidebar/01/js/bootstrap.min.js'%}"></script>
-    <script src="{%static 'sidebar/01/js/main.js'%}"></script>
-      <script src="{%static 'sidebar/01/js/bootstrap.bundle.min.js'%}"></script>
-  </body>
-</html> -->
 
 
 

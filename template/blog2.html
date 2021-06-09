@@ -19,10 +19,15 @@
             <div class="row">
                 <div class="col-md-8 mt-5">
                     <div class="inner">
-                    <img src="{%static 'images/about/blog.jpeg'%}" width="100%" height="500"/>
+                        {% if blog.image %}
+                        <img src="{{blog.image.url}}" width="100%" height="500"/>
+                        {% else %}
+                             <img src="{%static 'images/about/blog.jpeg'%}" width="100%" height="500"/>
+                        {% endif %} 
                     </div>
                     <div class="container bg-white">
-                        <br/>
+                        {{blog.description}}
+                        <!-- <br/>
                         <p class="f">A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my whole heart. I am alone, and feel the charm of existence in this spot, which was created for the bliss of souls like mine. I am so happy, my dear friend, so absorbed in the exquisite sense of mere tranquil existence, that I neglect...
                         </p>
                         <br/>
@@ -57,7 +62,7 @@
                             </ul>
                         <p class="f">
                         Copy Writers ambushed her, made her drunk with Longe and Parole and dragged her into their agency, where they abused her for their projects again and again. And if she hasn’t been rewritten, then they are still using her.Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean. A small river named Duden flows by their plate.
-                        </p>
+                        </p> -->
                     </div>
                 </div>
                 <div class="col-md-4 mt-5">
@@ -105,7 +110,7 @@
                     <i class="icofont-ui-user icofont-4x border rounded rounded-circle bg-white p-3"></i><br>
                     <br><br>
                     <h5>Author Name</h5>
-                    <h3>JOHN SMITH</h3>
+                    <h3>{{blog.user_id.fname}} {{blog.user_id.lname}}</h3>
                     A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my whole heart.
                 </div>
             </div>

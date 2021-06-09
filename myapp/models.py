@@ -19,6 +19,7 @@ class user(models.Model):
     address = models.TextField(blank=True)
     city=models.CharField(max_length=20)
     state=models.CharField(max_length=20)
+    profile_image = models.ImageField()
 
 class blog(models.Model):
     subject=models.CharField(max_length=125)

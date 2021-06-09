@@ -1,0 +1,44 @@
+{%extends 'index1.html'%}
+{% load static%}
+{% block content %}
+
+    <title>view profile</title>
+    <style>
+        .ww{font-family: 'Reggae One'!important}
+        .w{font-family:'Train One';font-size: 18px;}
+        .w{border-bottom: none}
+        .l{padding:10px;border: 2px;border-radius:50%;font-size:25px;background: rgba(0,0,0,0.5)}
+        .ss{font-size: 25px;}
+    </style>
+  <div class="container">
+    <div class="row mt-3">
+        
+        <div class="col-md-9">
+         <center><h1 class="ww mb-5">Setting</h1></center>
+            <div class="row">
+                <div class="col-md-2 mb-5">
+                <div><i class="fas fa-cog fa-3x mb-5 mt-3"></i></i></div>
+                <div><i class="fas fa-user-edit fa-3x mt-3 mb-5"></i></i></div>
+                <div><i class="fas fa-exchange-alt fa-3x mt-3 mb-5"></i></div>
+                </div>
+                <div class="col-md-6">
+                <div><a href="{%url 'pro'%}" class="ss"><b>Account</b></a></div>
+                <label class="w">Vier Your Profile</label></a>
+                <div style="margin-top: 30px">
+                  <a href="{%url 'ep'%}" class="ss"><b>Edit Profile</b></a>
+                </div>
+                  <label class="w">Edit User Information</label>
+                <div style="margin-top: 25px">
+                  <a href="{%url 'cp'%}" class="ss"><b>Change Password</b></a>
+                </div>
+                <label class="w">Create a new one or change previous</label>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+  {% endblock %}
+
+
+
+
