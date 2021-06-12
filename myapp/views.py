@@ -7,7 +7,7 @@ from myapp.models import blog
 from myapp.models import review
 from datetime import date
 
-
+import statsmodels.api as sm
 import matplotlib
 from io import BytesIO
 import io
@@ -16,6 +16,8 @@ from PIL import Image, ImageDraw
 import PIL, PIL.Image
 from io import StringIO
 import pandas as pd
+import itertools
+import statsmodels.api as sm
 
 import matplotlib.pyplot as plt
 from matplotlib import pylab
@@ -30,8 +32,8 @@ from io import BytesIO
 import io
 import base64
 
-
-
+from financity import settings
+from django.core.mail import send_mail
 
 # Create your views here.
 
@@ -185,7 +187,29 @@ def financeminister(request):
     return render(request,'financeminister.html',{})
 
 def forgotpassword(request):
-    return render(request,'forgotpassword.html',{})
+
+    if request.method == 'POST':
+        em = request.POST.get('email')
+
+        if user.objects.filter(email = em).exists():
+            us = user.objects.get(email = em)
+            subject = 'Password'
+            message  = 'Hello '+us.fname+' Your Password is '+us.password
+            email_from = settings.EMAIL_HOST_USER
+            recepient_list = [us.email, ]
+            try: 
+                send_mail(subject, message , email_from , recepient_list)
+                res = "Your Password is sent successfully to your mail"
+            except Exception as E:
+                print(E)    
+            return render(request, 'forgotpassword.html', {'res' :res})
+
+        else:
+            res = 'user  with this email does not exist'
+          
+            return render(request, 'forgotpassword.html', {'res':res})
+    
+    return render(request, 'forgotpassword.html', {'res':''})
 
 def footer(request):
     return render(request,'footer.html',{})
@@ -253,6 +277,10 @@ def login(request):
                 us =user.objects.get(email=email, password = password)
                 print(us.email)
                 request.session['email'] = us.email
+                request.session['user_image'] = us.profile_image.url
+                request.session['user_city'] = us.city
+                request.session['user_state'] = us.state
+                request.session['user_name'] = us.fname+" "+us.lname
                 return redirect('/index1')
             else:
                return render(request,'login.html', {'res':2})
@@ -333,6 +361,8 @@ def graphic(request):
     request.session.clear()
     return render(request,'graphic.html',{})
 
+
+
 def nse(request):
     from nsetools import Nse
     nse = Nse()
@@ -359,7 +389,7 @@ def nse1(request):
         print("INDICES ",x['indice'] ,' ADVANCES ', x['advances'],' declines ',x['declines']," UNCHANGED ", x['unchanged'])
 
 
-    return render(request,'nse1.html',{'l':l})
+    return render(request,'nse1.html',{'l':adv_dec})
 
 def nse2(request):
     from nsetools import Nse
@@ -373,10 +403,7 @@ def nse2(request):
     df = pd.DataFrame(top_gainers)
     k=df.values.tolist()
 
-    for x in k: 
-        for x1 in x:
-            print(x1, end="")
-        print("")
+    print(type(top_gainers))
 
     return render(request,'nse2.html',{'top_gainers':top_gainers})
 
@@ -388,6 +415,10 @@ def nse3(request):
     top_losers = nse.get_top_losers()
 
     return render(request,'nse3.html',{'top_losers':top_losers})
+
+
+
+
 
 def d1(request):
     if not request.session.has_key('email'):
@@ -413,6 +444,800 @@ def d4(request):
 
     return render(request,'d4.html',{})
 
+def d5(request):
+    if not request.session.has_key('email'):
+        return redirect('/login')
+
+    return render(request,'d5.html',{})
+
+def d6(request):
+    if not request.session.has_key('email'):
+        return redirect('/login')
+
+    return render(request,'d6.html',{})
+
+def d7(request):
+    if not request.session.has_key('email'):
+        return redirect('/login')
+
+    return render(request,'d7.html',{})
+
+
+
+
+def pr1(request):
+    if not request.session.has_key('email'):
+        return redirect('/login')
+
+    if request.method == 'POST':
+    # imports 
+        fig=plt.figure(figsize=(6, 7), dpi=80,facecolor='w', edgecolor='w')
+        matplotlib.rcParams['axes.labelsize'] = 14
+        matplotlib.rcParams['xtick.labelsize'] = 8
+        matplotlib.rcParams['ytick.labelsize'] = 12
+        matplotlib.rcParams['text.color'] = 'k'
+
+        #Prediction
+        df = pd.read_csv("gdp.csv")
+        zzz=df.iloc[:1,2:3]
+        zzz=zzz.iloc[0]
+        df.dtypes
+        x=request.POST.get('count')
+        print(x)
+        #x=input('Enter the country name :')
+        df1=  df.loc[df['Country Name']==x]
+        #df1=df1.set_index('Country Name')
+        df1=df1.transpose()
+        df1=df1.iloc[4:,:]
+        df1=df1.dropna()
+        df1=df1.reset_index()
+        print(df1)
+        df1.columns=['year','val']
+        df1['year']=pd.to_datetime(df1['year'])
+        df1=df1.set_index('year')
+        df1.index
+
+        df1.isnull().sum()
+
+        df1.plot(figsize=(15, 6))
+        
+
+
+        c={'val':float
+        } 
+        df1=df1.astype(c)
+        y=df1
+
+        from pylab import rcParams
+        rcParams['figure.figsize'] = 10, 8
+        decomposition = sm.tsa.seasonal_decompose(y, model='additive')
+        fig = decomposition.plot()
+        y.dtypes
+        y.index
+        from statsmodels.tsa.arima_model import ARIMA
+        p = d = q = range(0,4)
+        pdq = list(itertools.product(p, d, q))
+        aick=9999999
+        pdq1=(-1,-1,-1)
+
+        for param in pdq:
+            try:
+
+                model = ARIMA(y, order=param)
+
+                results  = model.fit()
+
+                print(results .summary())
+
+                print('ARIMA{} - AIC:{}'.format(param,  results.aic))
+                if results.aic < aick:
+                    aick=results.aic
+                    pdq1=param
+                    
+
+            except Exception as e :
+                #print(e)
+
+                continue
+
+        print(pdq1,aick)
+        model = ARIMA(y, order=pdq1)
+
+        results  = model.fit()
+
+        print(results .aic)
+
+        model = ARIMA(y, order=(pdq1[0],pdq1[1],pdq1[2]))
+        results = model.fit(disp=0)  
+        print(results.summary())
+        results.plot_predict(dynamic=False,end="2025")
+
+        
+        #saving image
+        buf =io.BytesIO()
+        plt.margins(0.8)
+        # Tweak spacing to prevent clipping of tick-labels
+        plt.subplots_adjust(bottom=0.35)
+        plt.savefig(buf, format='png')
+    
+        fig.savefig('abc.png')
+        
+        plt.close(fig)
+        image = Image.open("abc.png")
+        draw = ImageDraw.Draw(image)
+        
+        image.save(buf, 'PNG')
+        content_type="Image/png"
+        buffercontent=buf.getvalue()
+
+
+        graphic = base64.b64encode(buffercontent) 
+        #response = HttpResponse(buf.getvalue(), content_type='image/png')
+        #return response
+        return render(request, 'graphic.html', {'graphic': graphic.decode('utf8'),'x':x,'zzz':zzz})
+
+    return render(request,'pr1.html',{})
+
+def pr2(request):
+    if not request.session.has_key('email'):
+        return redirect('/login')
+    if request.method == 'POST':
+    # imports 
+        fig=plt.figure(figsize=(6, 7), dpi=80,facecolor='w', edgecolor='w')
+        matplotlib.rcParams['axes.labelsize'] = 14
+        matplotlib.rcParams['xtick.labelsize'] = 8
+        matplotlib.rcParams['ytick.labelsize'] = 12
+        matplotlib.rcParams['text.color'] = 'k'
+
+        #Prediction
+        df = pd.read_csv("GNI_PPP.csv")
+        zzz=df.iloc[:1,2:3]
+        zzz=zzz.iloc[0]
+        df.dtypes
+        x=request.POST.get('count')
+        print(x)
+        #x=input('Enter the country name :')
+        df1=  df.loc[df['Country Name']==x]
+        #df1=df1.set_index('Country Name')
+        df1=df1.transpose()
+        df1=df1.iloc[4:,:]
+        df1=df1.dropna()
+        df1=df1.reset_index()
+        print(df1)
+        df1.columns=['year','val']
+        df1['year']=pd.to_datetime(df1['year'])
+        df1=df1.set_index('year')
+        df1.index
+
+        df1.isnull().sum()
+
+        df1.plot(figsize=(15, 6))
+        
+
+
+        c={'val':float
+        } 
+        df1=df1.astype(c)
+        y=df1
+
+        from pylab import rcParams
+        rcParams['figure.figsize'] = 10, 8
+        decomposition = sm.tsa.seasonal_decompose(y, model='additive')
+        fig = decomposition.plot()
+        y.dtypes
+        y.index
+        from statsmodels.tsa.arima_model import ARIMA
+        p = d = q = range(0,4)
+        pdq = list(itertools.product(p, d, q))
+        aick=9999999
+        pdq1=(-1,-1,-1)
+
+        for param in pdq:
+            try:
+
+                model = ARIMA(y, order=param)
+
+                results  = model.fit()
+
+                print(results .summary())
+
+                print('ARIMA{} - AIC:{}'.format(param,  results.aic))
+                if results.aic < aick:
+                    aick=results.aic
+                    pdq1=param
+                    
+
+            except Exception as e :
+                #print(e)
+
+                continue
+
+        print(pdq1,aick)
+        model = ARIMA(y, order=pdq1)
+
+        results  = model.fit()
+
+        print(results .aic)
+
+        model = ARIMA(y, order=(pdq1[0],pdq1[1],pdq1[2]))
+        results = model.fit(disp=0)  
+        print(results.summary())
+        results.plot_predict(dynamic=False,end="2030")
+
+        
+        #saving image
+        buf =io.BytesIO()
+        plt.margins(0.8)
+        # Tweak spacing to prevent clipping of tick-labels
+        plt.subplots_adjust(bottom=0.35)
+        plt.savefig(buf, format='png')
+    
+        fig.savefig('abc.png')
+        
+        plt.close(fig)
+        image = Image.open("abc.png")
+        draw = ImageDraw.Draw(image)
+        
+        image.save(buf, 'PNG')
+        content_type="Image/png"
+        buffercontent=buf.getvalue()
+
+
+        graphic = base64.b64encode(buffercontent) 
+        return render(request, 'graphic.html', {'graphic': graphic.decode('utf8'),'x':x,'zzz':zzz})
+
+    
+    return render(request,'pr2.html',{})
+
+def pr3(request):
+    if not request.session.has_key('email'):
+        return redirect('/login')
+    if request.method == 'POST':
+    # imports 
+        fig=plt.figure(figsize=(6, 7), dpi=80,facecolor='w', edgecolor='w')
+        matplotlib.rcParams['axes.labelsize'] = 14
+        matplotlib.rcParams['xtick.labelsize'] = 8
+        matplotlib.rcParams['ytick.labelsize'] = 12
+        matplotlib.rcParams['text.color'] = 'k'
+
+        #Prediction
+        df = pd.read_csv("GROSS_SAVING.csv")
+        zzz=df.iloc[:1,2:3]
+        zzz=zzz.iloc[0]
+        df.dtypes
+        x=request.POST.get('count')
+        print(x)
+        #x=input('Enter the country name :')
+        df1=  df.loc[df['Country Name']==x]
+        #df1=df1.set_index('Country Name')
+        df1=df1.transpose()
+        df1=df1.iloc[4:,:]
+        df1=df1.dropna()
+        df1=df1.reset_index()
+        print(df1)
+        df1.columns=['year','val']
+        df1['year']=pd.to_datetime(df1['year'])
+        df1=df1.set_index('year')
+        df1.index
+
+        df1.isnull().sum()
+
+        df1.plot(figsize=(15, 6))
+        
+
+
+        c={'val':float
+        } 
+        df1=df1.astype(c)
+        y=df1
+
+        from pylab import rcParams
+        rcParams['figure.figsize'] = 10, 8
+        decomposition = sm.tsa.seasonal_decompose(y, model='additive')
+        fig = decomposition.plot()
+        y.dtypes
+        y.index
+        from statsmodels.tsa.arima_model import ARIMA
+        p = d = q = range(0,4)
+        pdq = list(itertools.product(p, d, q))
+        aick=9999999
+        pdq1=(-1,-1,-1)
+
+        for param in pdq:
+            try:
+
+                model = ARIMA(y, order=param)
+
+                results  = model.fit()
+
+                print(results .summary())
+
+                print('ARIMA{} - AIC:{}'.format(param,  results.aic))
+                if results.aic < aick:
+                    aick=results.aic
+                    pdq1=param
+                    
+
+            except Exception as e :
+                #print(e)
+
+                continue
+
+        print(pdq1,aick)
+        model = ARIMA(y, order=pdq1)
+
+        results  = model.fit()
+
+        print(results .aic)
+
+        model = ARIMA(y, order=(pdq1[0],pdq1[1],pdq1[2]))
+        results = model.fit(disp=0)  
+        print(results.summary())
+        results.plot_predict(dynamic=False,end="2030")
+
+        
+        #saving image
+        buf =io.BytesIO()
+        plt.margins(0.8)
+        # Tweak spacing to prevent clipping of tick-labels
+        plt.subplots_adjust(bottom=0.35)
+        plt.savefig(buf, format='png')
+    
+        fig.savefig('abc.png')
+        
+        plt.close(fig)
+        image = Image.open("abc.png")
+        draw = ImageDraw.Draw(image)
+        
+        image.save(buf, 'PNG')
+        content_type="Image/png"
+        buffercontent=buf.getvalue()
+
+
+        graphic = base64.b64encode(buffercontent) 
+        return render(request, 'graphic.html', {'graphic': graphic.decode('utf8'),'x':x,'zzz':zzz})
+    return render(request,'pr3.html',{})
+
+def pr4(request):
+    if not request.session.has_key('email'):
+        return redirect('/login')
+    if request.method == 'POST':
+    # imports 
+        fig=plt.figure(figsize=(6, 7), dpi=80,facecolor='w', edgecolor='w')
+        matplotlib.rcParams['axes.labelsize'] = 14
+        matplotlib.rcParams['xtick.labelsize'] = 8
+        matplotlib.rcParams['ytick.labelsize'] = 12
+        matplotlib.rcParams['text.color'] = 'k'
+
+        #Prediction
+        df = pd.read_csv("PPP CONVIRSION FACTOR.csv")
+        zzz=df.iloc[:1,2:3]
+        zzz=zzz.iloc[0]
+        df.dtypes
+        x=request.POST.get('count')
+        print(x)
+        #x=input('Enter the country name :')
+        df1=  df.loc[df['Country Name']==x]
+        #df1=df1.set_index('Country Name')
+        df1=df1.transpose()
+        df1=df1.iloc[4:,:]
+        df1=df1.dropna()
+        df1=df1.reset_index()
+        print(df1)
+        df1.columns=['year','val']
+        df1['year']=pd.to_datetime(df1['year'])
+        df1=df1.set_index('year')
+        df1.index
+
+        df1.isnull().sum()
+
+        df1.plot(figsize=(15, 6))
+        
+
+
+        c={'val':float
+        } 
+        df1=df1.astype(c)
+        y=df1
+
+        from pylab import rcParams
+        rcParams['figure.figsize'] = 10, 8
+        decomposition = sm.tsa.seasonal_decompose(y, model='additive')
+        fig = decomposition.plot()
+        y.dtypes
+        y.index
+        from statsmodels.tsa.arima_model import ARIMA
+        p = d = q = range(0,4)
+        pdq = list(itertools.product(p, d, q))
+        aick=9999999
+        pdq1=(-1,-1,-1)
+
+        for param in pdq:
+            try:
+
+                model = ARIMA(y, order=param)
+
+                results  = model.fit()
+
+                print(results .summary())
+
+                print('ARIMA{} - AIC:{}'.format(param,  results.aic))
+                if results.aic < aick:
+                    aick=results.aic
+                    pdq1=param
+                    
+
+            except Exception as e :
+                #print(e)
+
+                continue
+
+        print(pdq1,aick)
+        model = ARIMA(y, order=pdq1)
+
+        results  = model.fit()
+
+        print(results .aic)
+
+        model = ARIMA(y, order=(pdq1[0],pdq1[1],pdq1[2]))
+        results = model.fit(disp=0)  
+        print(results.summary())
+        results.plot_predict(dynamic=False,end="2030")
+
+        
+        #saving image
+        buf =io.BytesIO()
+        plt.margins(0.8)
+        # Tweak spacing to prevent clipping of tick-labels
+        plt.subplots_adjust(bottom=0.35)
+        plt.savefig(buf, format='png')
+    
+        fig.savefig('abc.png')
+        
+        plt.close(fig)
+        image = Image.open("abc.png")
+        draw = ImageDraw.Draw(image)
+        
+        image.save(buf, 'PNG')
+        content_type="Image/png"
+        buffercontent=buf.getvalue()
+
+
+        graphic = base64.b64encode(buffercontent) 
+        return render(request, 'graphic.html', {'graphic': graphic.decode('utf8'),'x':x,'zzz':zzz})
+    return render(request,'pr4.html',{})
+
+def pr5(request):
+    if not request.session.has_key('email'):
+        return redirect('/login')
+    if request.method == 'POST':
+    # imports 
+        fig=plt.figure(figsize=(6, 7), dpi=80,facecolor='w', edgecolor='w')
+        matplotlib.rcParams['axes.labelsize'] = 14
+        matplotlib.rcParams['xtick.labelsize'] = 8
+        matplotlib.rcParams['ytick.labelsize'] = 12
+        matplotlib.rcParams['text.color'] = 'k'
+
+        #Prediction
+        df = pd.read_csv("api_d2.csv")
+        zzz=df.iloc[:1,2:3]
+        zzz=zzz.iloc[0]
+        df.dtypes
+        x=request.POST.get('count')
+        print(x)
+        #x=input('Enter the country name :')
+        df1=  df.loc[df['Country Name']==x]
+        #df1=df1.set_index('Country Name')
+        df1=df1.transpose()
+        df1=df1.iloc[4:,:]
+        df1=df1.dropna()
+        df1=df1.reset_index()
+        print(df1)
+        df1.columns=['year','val']
+        df1['year']=pd.to_datetime(df1['year'])
+        df1=df1.set_index('year')
+        df1.index
+
+        df1.isnull().sum()
+
+        df1.plot(figsize=(15, 6))
+        
+
+
+        c={'val':float
+        } 
+        df1=df1.astype(c)
+        y=df1
+
+        from pylab import rcParams
+        rcParams['figure.figsize'] = 10, 8
+        decomposition = sm.tsa.seasonal_decompose(y, model='additive')
+        fig = decomposition.plot()
+        y.dtypes
+        y.index
+        from statsmodels.tsa.arima_model import ARIMA
+        p = d = q = range(0,4)
+        pdq = list(itertools.product(p, d, q))
+        aick=9999999
+        pdq1=(-1,-1,-1)
+
+        for param in pdq:
+            try:
+
+                model = ARIMA(y, order=param)
+
+                results  = model.fit()
+
+                print(results .summary())
+
+                print('ARIMA{} - AIC:{}'.format(param,  results.aic))
+                if results.aic < aick:
+                    aick=results.aic
+                    pdq1=param
+                    
+
+            except Exception as e :
+                #print(e)
+
+                continue
+
+        print(pdq1,aick)
+        model = ARIMA(y, order=pdq1)
+
+        results  = model.fit()
+
+        print(results .aic)
+
+        model = ARIMA(y, order=(pdq1[0],pdq1[1],pdq1[2]))
+        results = model.fit(disp=0)  
+        print(results.summary())
+        results.plot_predict(dynamic=False,end="2030")
+
+        
+        #saving image
+        buf =io.BytesIO()
+        plt.margins(0.8)
+        # Tweak spacing to prevent clipping of tick-labels
+        plt.subplots_adjust(bottom=0.35)
+        plt.savefig(buf, format='png')
+    
+        fig.savefig('abc.png')
+        
+        plt.close(fig)
+        image = Image.open("abc.png")
+        draw = ImageDraw.Draw(image)
+        
+        image.save(buf, 'PNG')
+        content_type="Image/png"
+        buffercontent=buf.getvalue()
+
+
+        graphic = base64.b64encode(buffercontent) 
+        return render(request, 'graphic.html', {'graphic': graphic.decode('utf8'),'x':x,'zzz':zzz})
+    return render(request,'pr5.html',{})
+
+def pr6(request):
+    if not request.session.has_key('email'):
+        return redirect('/login')
+    if request.method == 'POST':
+    # imports 
+        fig=plt.figure(figsize=(6, 7), dpi=80,facecolor='w', edgecolor='w')
+        matplotlib.rcParams['axes.labelsize'] = 14
+        matplotlib.rcParams['xtick.labelsize'] = 8
+        matplotlib.rcParams['ytick.labelsize'] = 12
+        matplotlib.rcParams['text.color'] = 'k'
+
+        #Prediction
+        df = pd.read_csv("API.csv")
+        zzz=df.iloc[:1,2:3]
+        zzz=zzz.iloc[0]
+        df.dtypes
+        x=request.POST.get('count')
+        print(x)
+        #x=input('Enter the country name :')
+        df1=  df.loc[df['Country Name']==x]
+        #df1=df1.set_index('Country Name')
+        df1=df1.transpose()
+        df1=df1.iloc[4:,:]
+        df1=df1.dropna()
+        df1=df1.reset_index()
+        print(df1)
+        df1.columns=['year','val']
+        df1['year']=pd.to_datetime(df1['year'])
+        df1=df1.set_index('year')
+        df1.index
+
+        df1.isnull().sum()
+
+        df1.plot(figsize=(15, 6))
+        
+
+
+        c={'val':float
+        } 
+        df1=df1.astype(c)
+        y=df1
+
+        from pylab import rcParams
+        rcParams['figure.figsize'] = 10, 8
+        decomposition = sm.tsa.seasonal_decompose(y, model='additive')
+        fig = decomposition.plot()
+        y.dtypes
+        y.index
+        from statsmodels.tsa.arima_model import ARIMA
+        p = d = q = range(0,4)
+        pdq = list(itertools.product(p, d, q))
+        aick=9999999
+        pdq1=(-1,-1,-1)
+
+        for param in pdq:
+            try:
+
+                model = ARIMA(y, order=param)
+
+                results  = model.fit()
+
+                print(results .summary())
+
+                print('ARIMA{} - AIC:{}'.format(param,  results.aic))
+                if results.aic < aick:
+                    aick=results.aic
+                    pdq1=param
+                    
+
+            except Exception as e :
+                #print(e)
+
+                continue
+
+        print(pdq1,aick)
+        model = ARIMA(y, order=pdq1)
+
+        results  = model.fit()
+
+        print(results .aic)
+
+        model = ARIMA(y, order=(pdq1[0],pdq1[1],pdq1[2]))
+        results = model.fit(disp=0)  
+        print(results.summary())
+        results.plot_predict(dynamic=False,end="2030")
+
+        
+        #saving image
+        buf =io.BytesIO()
+        plt.margins(0.8)
+        # Tweak spacing to prevent clipping of tick-labels
+        plt.subplots_adjust(bottom=0.35)
+        plt.savefig(buf, format='png')
+    
+        fig.savefig('abc.png')
+        
+        plt.close(fig)
+        image = Image.open("abc.png")
+        draw = ImageDraw.Draw(image)
+        
+        image.save(buf, 'PNG')
+        content_type="Image/png"
+        buffercontent=buf.getvalue()
+
+
+        graphic = base64.b64encode(buffercontent) 
+        return render(request, 'graphic.html', {'graphic': graphic.decode('utf8'),'x':x,'zzz':zzz})
+    return render(request,'pr6.html',{})
+
+def pr7(request):
+    if not request.session.has_key('email'):
+        return redirect('/login')
+    if request.method == 'POST':
+    # imports 
+        fig=plt.figure(figsize=(6, 7), dpi=80,facecolor='w', edgecolor='w')
+        matplotlib.rcParams['axes.labelsize'] = 14
+        matplotlib.rcParams['xtick.labelsize'] = 8
+        matplotlib.rcParams['ytick.labelsize'] = 12
+        matplotlib.rcParams['text.color'] = 'k'
+
+        #Prediction
+        df = pd.read_csv("total reserve includes gold.csv")
+        zzz=df.iloc[:1,2:3]
+        zzz=zzz.iloc[0]
+        df.dtypes
+        x=request.POST.get('count')
+        print(x)
+        #x=input('Enter the country name :')
+        df1=  df.loc[df['Country Name']==x]
+        #df1=df1.set_index('Country Name')
+        df1=df1.transpose()
+        df1=df1.iloc[4:,:]
+        df1=df1.dropna()
+        df1=df1.reset_index()
+        print(df1)
+        df1.columns=['year','val']
+        df1['year']=pd.to_datetime(df1['year'])
+        df1=df1.set_index('year')
+        df1.index
+
+        df1.isnull().sum()
+
+        df1.plot(figsize=(15, 6))
+        
+
+
+        c={'val':float
+        } 
+        df1=df1.astype(c)
+        y=df1
+
+        from pylab import rcParams
+        rcParams['figure.figsize'] = 10, 8
+        decomposition = sm.tsa.seasonal_decompose(y, model='additive')
+        fig = decomposition.plot()
+        y.dtypes
+        y.index
+        from statsmodels.tsa.arima_model import ARIMA
+        p = d = q = range(0,4)
+        pdq = list(itertools.product(p, d, q))
+        aick=9999999
+        pdq1=(-1,-1,-1)
+
+        for param in pdq:
+            try:
+
+                model = ARIMA(y, order=param)
+
+                results  = model.fit()
+
+                print(results .summary())
+
+                print('ARIMA{} - AIC:{}'.format(param,  results.aic))
+                if results.aic < aick:
+                    aick=results.aic
+                    pdq1=param
+                    
+
+            except Exception as e :
+                #print(e)
+
+                continue
+
+        print(pdq1,aick)
+        model = ARIMA(y, order=pdq1)
+
+        results  = model.fit()
+
+        print(results .aic)
+
+        model = ARIMA(y, order=(pdq1[0],pdq1[1],pdq1[2]))
+        results = model.fit(disp=0)  
+        print(results.summary())
+        results.plot_predict(dynamic=False,end="2030")
+
+        
+        #saving image
+        buf =io.BytesIO()
+        plt.margins(0.8)
+        # Tweak spacing to prevent clipping of tick-labels
+        plt.subplots_adjust(bottom=0.35)
+        plt.savefig(buf, format='png')
+    
+        fig.savefig('abc.png')
+        
+        plt.close(fig)
+        image = Image.open("abc.png")
+        draw = ImageDraw.Draw(image)
+        
+        image.save(buf, 'PNG')
+        content_type="Image/png"
+        buffercontent=buf.getvalue()
+
+
+        graphic = base64.b64encode(buffercontent) 
+        return render(request, 'graphic.html', {'graphic': graphic.decode('utf8'),'x':x,'zzz':zzz})
+    return render(request,'pr7.html',{})
+
+
+
+
+
 def gdp1(request):
     if not request.session.has_key('email'):
         return redirect('/login')
@@ -435,7 +1260,7 @@ def gdp1(request):
         df4=df1[df1['Country Name'].isin([x,y])]
         df4=df4.set_index('Country Name')
         df4=df4.transpose()
-        df4.iloc[3:,:].plot.line(title='GDP Growth of '+x+' and '+y)
+        df4.iloc[3:,:].plot.line(title='GDP Growth Annual(%) of '+x+' and '+y)
         plt.axhline(0, color='k')
 
         #saving image
@@ -459,7 +1284,7 @@ def gdp1(request):
         graphic = base64.b64encode(buffercontent) 
         #response = HttpResponse(buf.getvalue(), content_type='image/png')
         #return response
-        return render(request, 'gdp1.html', {'graphic': graphic.decode('utf8')})
+        return render(request, 'graphic.html', {'graphic': graphic.decode('utf8')})
 
     else:
 
@@ -488,7 +1313,7 @@ def gdp2(request):
         #z=input('Enter the ending year :')
         df4=df1[df1['Country Name']==x]
         df4=df4.set_index('Country Name')
-        df4.loc[:,y:z].plot.bar(title='GDP Growth of '+x+' from '+y+' to '+z,rot=360)
+        df4.loc[:,y:z].plot.bar(title='GDP Growth Annual(%) of '+x+' from '+y+' to '+z,rot=360)
         plt.axhline(0, color='k')
 
         #saving image
@@ -512,7 +1337,7 @@ def gdp2(request):
         graphic = base64.b64encode(buffercontent) 
         #response = HttpResponse(buf.getvalue(), content_type='image/png')
         #return response
-        return render(request, 'gdp2.html', {'graphic': graphic.decode('utf8')})
+        return render(request, 'graphic.html', {'graphic': graphic.decode('utf8')})
 
     else:
         return render(request,'gdp2.html',{})
@@ -542,7 +1367,7 @@ def gdp3(request):
         df4=df4.set_index('Country Name')
         df4=df4.transpose()
         df4=df4.iloc[3:,:]
-        df4.loc[z,:].plot.bar(title='GDP Growth of '+x+' and '+y+' in '+z , rot=360)
+        df4.loc[z,:].plot.bar(title='GDP Growth Annual(%) of '+x+' and '+y+' in '+z , rot=360)
         plt.axhline(0, color='k')
 
         #saving image
@@ -566,12 +1391,11 @@ def gdp3(request):
         graphic = base64.b64encode(buffercontent) 
         #response = HttpResponse(buf.getvalue(), content_type='image/png')
         #return response
-        return render(request, 'gdp3.html', {'graphic': graphic.decode('utf8')})
+        return render(request, 'graphic.html', {'graphic': graphic.decode('utf8')})
 
     else:
         return render(request,'gdp3.html',{})
     
-
 def gdp4(request):
     if not request.session.has_key('email'):
         return redirect('/login')
@@ -604,7 +1428,7 @@ def gdp4(request):
         df5=df5.set_index('Country Name')
         df5=df5.transpose()
         df5=df5.iloc[3:,:]
-        ax=df5.loc[z:zz,:].plot.bar(title="Adjusted net savings, including particulate emission damage from "+z+" to "+zz,rot=360,grid=True,figsize=(10,5))
+        ax=df5.loc[z:zz,:].plot.bar(title="GDP Growth Annual(%) from "+z+" to "+zz,rot=360,grid=True,figsize=(10,5))
         plt.axhline(0, color='k')
         ax.set_xlabel('Years')
         ax.set_facecolor('bisque')
@@ -630,12 +1454,11 @@ def gdp4(request):
         graphic = base64.b64encode(buffercontent) 
         #response = HttpResponse(buf.getvalue(), content_type='image/png')
         #return response
-        return render(request, 'gdp4.html', {'graphic': graphic.decode('utf8')})
+        return render(request, 'graphic.html', {'graphic': graphic.decode('utf8')})
 
     else:
         return render(request,'gdp4.html',{})
     
-
 def gdp5(request):
     if not request.session.has_key('email'):
         return redirect('/login')
@@ -682,7 +1505,7 @@ def gdp5(request):
         graphic = base64.b64encode(buffercontent) 
         #response = HttpResponse(buf.getvalue(), content_type='image/png')
         #return response
-        return render(request, 'gdp5.html', {'graphic': graphic.decode('utf8')})
+        return render(request, 'graphic.html', {'graphic': graphic.decode('utf8')})
 
     else:
         return render(request,'gdp5.html',{})
@@ -733,14 +1556,15 @@ def gdp6(request):
         graphic = base64.b64encode(buffercontent) 
         #response = HttpResponse(buf.getvalue(), content_type='image/png')
         #return response
-        return render(request, 'gdp6.html', {'graphic': graphic.decode('utf8')})
+        return render(request, 'graphic.html', {'graphic': graphic.decode('utf8')})
 
     else:
         return render(request,'gdp6.html',{})
 
-def p1(request):
-    if not request.session.has_key('email'):
-        return redirect('/login')
 
+
+
+
+def p1(request):
     return render(request,'p1.html',{})
     

@@ -1,9 +1,52 @@
 {% extends 'index1.html'%}
 {% load static %}
 {% block content %}
+<center><h3>NSE Top Loosers</h3><br></center>
+<table class="border">
+    <th><b>Symbol</b></th>
+    <th><b>Series</b></th>
+    <th><b>Open Price</b></th>
+    <th><b>Low Price</b></th>
+    <th><b>High Price</b></th>
+    <th><b>Net Price</b></th>
+    <th><b>Previous Price</b></th>
+    <th><b>Ltp</b></th>
+    <th><b>Last Corp Announcement</b></th>
+    <th><b>Last Corp Announcement Date</b></th>
+    <th><b>Traded Quantity</b></th>
+    <th><b>Turn over In Lakhs</b></th>
+    {% for x in top_losers%}
+    <tr>
+    <td>{{x.symbol}}</td>
+    <td>{{x.series}}</td>
+    <td>{{x.openPrice}}</td>
+    <td>{{x.lowPrice}}</td>
+    <td>{{x.highPrice}}</td>
+    <td>{{x.netPrice}}</td>
+    <td>{{x.previousPrice}}</td>
+    <td>{{x.ltp}}</td>
+    <td>{{x.lastCorpAnnouncement}}</td>
+    <td>{{x.lastCorpAnnouncementDate}}</td>
+    <td>{{x.tradedQuantity}}</td>
+    <td>{{x.turnoverInLakhs}}</td>
 
-{% for x in top_losers%}
-{{x}} <br><br>
-{% endfor %}
+
+
+    {% endfor %}
+    </tr>
+    
+    
+    {% for x in top_gainers%}
+    <tr>
+    
+    {% endfor %}
+    </tr>
+
+
+    
+
+
+
+</table>
 
 {% endblock %}

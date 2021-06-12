@@ -51,10 +51,23 @@ urlpatterns = [
     path('setting/',views.setting,name="se"),
     path('successfullychanged/',views.successfullychanged,name="sc"),
     path('logout/', views.logout, name='logout'),
-    path('gdp/', views.d1, name='dy1'),
-    path('api1/', views.d2, name='dy2'),
-    path('gold/', views.d3, name='dy3'),
-    path('expense/', views.d4, name='dy4'),
+
+    path('d1/', views.d1, name='dy1'),
+    path('d2/', views.d2, name='dy2'),
+    path('d3/', views.d3, name='dy3'),
+    path('d4/', views.d4, name='dy4'),
+    path('d5/', views.d5, name='dy5'),
+    path('d6/', views.d6, name='dy6'),
+    path('d7/', views.d7, name='dy7'),
+
+    path('pr1/', views.pr1, name='pr1'),
+    path('pr2/', views.pr2, name='pr2'),
+    path('pr3/', views.pr3, name='pr3'),
+    path('pr4/', views.pr4, name='pr4'),
+    path('pr5/', views.pr5, name='pr5'),
+    path('pr6/', views.pr6, name='pr6'),
+    path('pr7/', views.pr7, name='pr7'),
+
     path('dashboard/', views.dashboard, name='dash'),
     path('graphic/', views.graphic, name='graph'),
 

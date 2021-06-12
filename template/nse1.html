@@ -2,8 +2,24 @@
 {% load static %}
 {% block content %}
 
-{% for x in l%}
-{{x}} <br>
-{% endfor %}
+<center><h3>Advances / Declines </h3><br>
+    
+<table class="border">
+    <th><b>Advances</b></th>
+    <th><b>Declines</b></th>
+    <th><b>Indice</b></th>
+    <th><b>Unchanged</b></th>
+    {% for x in l %}
+    <tr>
+    <td>{{x.advances}}</td>
+    <td>{{x.declines}}</td>
+    <td>{{x.indice}}</td>
+    <td>{{x.unchanged}}</td>
+
+    {% endfor %}
+    </tr>
+
+</table>
+</center>
 
 {% endblock %}

@@ -44,7 +44,6 @@ class budget(models.Model):
     title=models.CharField(max_length=125)
     link=models.URLField()
 
-
 class annualreports(models.Model):
     year=models.DateField()
     title=models.CharField(max_length=125)
@@ -54,7 +53,6 @@ class annualreports(models.Model):
 class services(models.Model):
     title=models.CharField(max_length=125)
     link=models.URLField()
-
 
 class dataandstatistics(models.Model):
     categories=models.CharField(max_length=125)

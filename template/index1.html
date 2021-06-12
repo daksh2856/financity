@@ -27,14 +27,14 @@
 			<nav id="sidebar">
 				<div class="p-4 pt-5">
                 <a href="{%url 'pro'%}" class="img logo rounded-circle ">
-                    {% if user.profile_image %}
-                    <img src="{{user.profile_image.url}}" id="i" class="im">
+                    {% if request.session.user_image %}
+                    <img src="{{request.session.user_image}}" id="i" class="im">
                     {% else %}
                       <img src="{%static 'images/addimg.jpg'%}" id="i" class="im">
                     {% endif %}
                 </a>
-                <h5 class="namee text-center">{{user.fname}} {{user.lname}}</h5>
-                <h6 class="country nameee">{{user.address}}</h6>
+                <h5 class="namee text-center">{{request.session.user_name}}</h5>
+                <h6 class="country nameee">{{request.session.user_city}}|{{request.session.user_state}}</h6>
 	        <ul class="list-unstyled components mt-4 mb-5">
               <li class="active">
                 <a href="{%url 'dash'%}">
@@ -69,13 +69,22 @@
                         <a href="{%url 'dy1'%}">GDP</a>
                     </li>
                     <li>
-                        <a href="{%url 'dy2'%}">Agriculture, forestry, and fishing, value added</a>
+                      <a href="{%url 'dy2'%}">GNI, PPP (current international $)</a>
                     </li>
                     <li>
-                        <a href="{%url 'dy4'%}">Expense</a>
+                      <a href="{%url 'dy3'%}">Gross savings (% of GDP)</a>
                     </li>
                     <li>
-                        <a href="{%url 'dy3'%}">Total reserves (includes gold)</a>
+                      <a href="{%url 'dy4'%}">PPP conversion factor, GDP (LCU per international $)</a>
+                    </li>
+                    <li>
+                        <a href="{%url 'dy5'%}">Agriculture, forestry, and fishing, value added</a>
+                    </li>
+                    <li>
+                        <a href="{%url 'dy6'%}">Adjusted net savings, including particulate emission damage (% of GNI)</a>
+                    </li>
+                    <li>
+                        <a href="{%url 'dy7'%}">Total reserves (includes gold)</a>
                     </li>
                 </ul>
             </li>
@@ -83,13 +92,25 @@
               <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fas mr-2 fa-arrow-alt-circle-right"></i>PRIDICTION</a>
               <ul class="collapse list-unstyled" id="pageSubmenu">
                 <li>
-                    <a href="{%url 'p1'%}">GDP</a>
+                    <a href="{%url 'pr1'%}">GDP</a>
                 </li>
                 <li>
-                    <a href="#">Page 2</a>
+                  <a href="{%url 'pr2'%}">GNI, PPP (current international $)</a>
                 </li>
                 <li>
-                    <a href="#">Page 3</a>
+                  <a href="{%url 'pr3'%}">Gross savings (% of GDP)</a>
+                </li>
+                <li>
+                  <a href="{%url 'pr4'%}">PPP conversion factor, GDP (LCU per international $)</a>
+                </li>
+                <li>
+                    <a href="{%url 'pr5'%}">Agriculture, forestry, and fishing, value added</a>
+                </li>
+                <li>
+                    <a href="{%url 'pr6'%}">Adjusted net savings, including particulate emission damage (% of GNI)</a>
+                </li>
+                <li>
+                    <a href="{%url 'pr7'%}">Total reserves (includes gold)</a>
                 </li>
               </ul>
 	          </li>
@@ -116,11 +137,6 @@
             </li>
 	        </ul>
 
-	        <div class="footer">
-	        	<p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-						  Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved <i class="icon-heart" aria-hidden="true"></i>  <a href="https://colorlib.com" target="_blank"></a>
-						  <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
-	        </div>
 
 	      </div>
     	</nav>
